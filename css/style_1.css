@@ -1,0 +1,17 @@
+html{
+    font-family: "微软雅黑","黑体","宋体";
+    font-size: 10px;
+}
+body{
+    color: rgb(75, 74, 74);
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.blockcard{
+    display: inline-block;
+    margin-right: 4rem;
+}
+.blockcard h3{
+    display: inline;
+}

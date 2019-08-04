@@ -1,0 +1,60 @@
+html{
+    font-family: "微软雅黑","黑体","宋体";
+    font-size: 10px;
+}
+body{
+    color: rgb(75, 74, 74);
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.blockcard{
+    
+    display: inline-block;
+    margin-right: 4rem;
+}
+.blockcard h3{
+    display: inline;
+}
+.aside{
+    display: table-cell;
+    vertical-align:middle;
+    background-color: rgb(117, 117, 117);
+    height: 7rem;
+    width: 1300px;
+}
+h1{
+   font-size: 2.5rem;
+    color: white;
+    margin-left: 2rem;
+
+}
+.basic{
+    width: 1300px;
+    height: 13rem;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+   
+}
+.s3left{
+    line-height: 8rem;
+    width: 13rem;
+    background-color: lightgray;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid white;
+
+}
+.basic{
+    position: relative;
+}
+.s3right{
+    display: inline-block;
+  
+  
+ 
+position: absolute;
+top: 1.1rem;
+margin-left: 1.1rem;
+}
