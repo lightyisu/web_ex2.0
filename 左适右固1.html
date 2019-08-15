@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>test</title>
+<style>
+.main{
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    align-items: start;
+}
+.ledt,.right{
+    box-sizing: border-box;
+}
+.left{
+    grid-column: 1;
+}
+.right{
+    grid-column: 2;
+    background-color: aquamarine;
+    width: 200px;
+    height: 1000px;
+    margin-left: 20px;
+    
+}
+</style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="left">SOP(Simple Open Platform)
+                一个开放平台解决方案项目，基于Spring Cloud实现，目标是能够让用户快速得搭建起自己的开放平台。
+                
+                SOP提供了两种接口调用方式，分别是：支付宝开放平台的调用方式和淘宝开放平台的调用方式。 通过简单的配置后，你的项目就具备了和支付宝开放平台的一样的接口提供能力。
+                
+                SOP封装了开放平台大部分功能包括：签名验证、统一异常处理、统一返回内容 、业务参数验证（JSR-303）、秘钥管理等，未来还会实现更多功能</div>
+        <div class="right"></div>
+    </div>
+</body>
+
+
+
+</html>
