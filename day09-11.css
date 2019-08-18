@@ -1,0 +1,259 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+.topsection{
+
+    position: relative;
+    color: white;
+    width: 100%;
+    height: 990px;
+    background-image: url(day09-11img/Background@2x\(2\).png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: border-box;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    
+}
+#top{
+    font-size: 62px;
+    font-weight: lighter;
+   position: relative;
+   top: 208px;
+}
+.topsection p{
+    position: absolute;
+  width: 766px;
+  height: 84px;
+  left: 0;
+  right: 0;
+  top: -180px;
+  bottom: 0;
+  margin: auto;
+
+  font-size: 20px;
+  color: #ffffff;
+  opacity: 0.7;
+  line-height: 32px;
+
+
+
+ 
+}
+.accountcreate{
+    width: 970px;
+    height: 250px;
+    border: 1px rgba(255,255,255,0.2) solid;
+ 
+    border-radius: 2px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 560px;
+    
+  
+}
+.accountcreate h2{
+    color: #ffffff;
+
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 3.5px;
+
+}
+.accountcreate h3{
+    color: rgba(255,255,255,0.3);
+    font-size: 16px;
+    letter-spacing: 3.5px;
+}
+.accountcreate input{
+    color: #ffffff;
+    height: 50px;
+    width: 292px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0);
+    font-size: 14px;
+  
+    padding: 18px 99px 18px 22px;
+    box-sizing: border-box;
+}
+.accountcreate input[type="email"]{
+    position: absolute;
+    left: 100px;
+    top: 148px;
+
+}
+.accountcreate input[type="password"]{
+    position: absolute;
+    top: 148px;
+    left: 422px;
+    
+}
+.accountcreate button{
+    cursor: pointer;
+    width: 125px;
+    height: 50px;
+    background:rgba(255,255,255,1);
+    border-radius: 2px;
+    border: none;
+    position: absolute;
+    top: 148px;
+    right: 101px;
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: bolder；
+    
+    
+}
+.secondsection{
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 710px;
+    background-color: #ffffff;
+    position: relative;
+    text-align: center;
+ 
+}
+.secondsection h3{
+    position: absolute;
+    top: 89px;
+    left: 0;
+    right: 0;
+   margin: 0;
+   letter-spacing: 3.5px;
+   line-height: 28px;
+   font-size: 16px;
+ 
+}
+.secondsection h1{
+    position: absolute;
+    top: 139px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    font-size: 44px;
+    width: 657px;
+    height: 93px;
+
+}
+.secondsection .description{
+    position: absolute;
+    text-align: initial;
+    width: 416px;
+    height: 400px;
+    margin: auto;
+}
+.secondsection .one{
+   
+    top: 317px;
+    left: 18em;
+}
+.secondsection .description h3{
+    position: absolute;
+    top: 0;
+    left: 61px;
+    margin: 0;
+    font-weight: bolder;
+    color: #141414;
+    font-size: 22px;
+}
+.secondsection .description p{
+    position: absolute;
+    top: 26px;
+    left: 61px;
+    margin: 0;
+    font-size: 18px;
+}
+.secondsection .two{
+    top: 317px;
+    right: 18em;
+}
+.secondsection .three{
+    top: 482px;
+    left: 18em;
+}
+.secondsection .four{
+    top: 482px;
+    right: 18em;
+}
+.thirdsection{
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    width: 100%;
+    height:800px;
+    background-image: url(day09-11img/图层\ 2@2x.png);
+    background-size: cover;
+
+}
+.thirdsection h1{
+    font-size: 52px;
+    width: 366px;
+    height: 137px;
+    margin: 0;
+    position: absolute;
+    top: 163px;
+   left: 316px;
+}
+.thirdsection h2{
+    width: 367px;
+    height: 360px;
+    font-size: 20px;
+    line-height: 28px;
+    position: absolute;
+    top: 460px;
+    margin: 0;
+    left: 316px;
+    opacity: 0.7;
+}
+.thirdsection button{
+    width: 240px;
+    height: 60px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 2px;
+    font-weight: bolder;
+    letter-spacing: 1.5px;
+    position: absolute;
+    top: 670px;
+    left: 315px;
+    cursor: pointer;
+}
+.thirdsection button:nth-of-type(2){
+    background-color: rgba(255,255,255,0);
+    border: 2.2px solid rgba(255,255,255,0.3);
+    top: 670px;
+    left: 580px;
+    color: #ffffff;
+    font-weight: normal;
+}
+.thirdsection .ipad{
+    width: 645px;
+    height: 600px;
+   border-top-left-radius: 12px;
+   border-bottom-left-radius: 12px;
+    background-color: rgba(255,255,255,0);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    position: absolute;
+    right: 0;
+    top: 104px;
+   
+}
+.thirdsection .ipad svg{
+    position: absolute;
+    top: 268px;
+}
+.thirdsection .ipad .content{
+    width: 585px;
+    height: 542px;
+    background-color: #ffffff;
+    position: absolute;
+    right: 0;
+    top: 30px;
+   
+}
