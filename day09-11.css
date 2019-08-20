@@ -257,3 +257,170 @@ body{
     top: 30px;
    
 }
+.forthsection{
+    font-family: 'Montserrat',sans-serif;
+   
+    width: 100%;
+    height: 580px;
+  
+  
+}
+.forthsection h1{
+    margin: 0;
+    margin-top: 99px;
+    font-size: 40px;
+    text-align: center;
+}
+.forthsection .cards{
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+    
+}
+.forthsection .card p{
+    font-weight: bold;
+    opacity: 0.6;
+   width: 260px;
+  margin: 0;
+  margin-top: 40px;
+  font-size: 19px;
+}
+
+.forthsection .card{
+    display: inline-block;
+    width: 251px;
+    height: 300px;
+    text-align: center;
+    margin-left: 140px;
+}
+.forthsection .card:nth-of-type(1){
+    margin-left: 0;
+}
+hr{
+    opacity: 0.2;
+    margin-top: 60px;
+}
+
+
+
+.fifthsection{
+    position: relative;
+    width: 100%;
+    height: 900
+    px;
+    font-family: 'Montserrat',sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+  
+
+}
+
+.fifthsection .A1 img{
+    float: left;
+    margin-right: 100px;
+}
+.fifthsection .A1 article{
+   display: inline-block;
+  width: 350px;
+  margin-top: 120px;
+   
+}
+.fifthsection .A1 h2,.fifthsection .A1 p{
+    margin: 0;
+    float: left;
+    
+}
+
+.fifthsection .A2 article{
+    float: left;
+    margin-right: 100px;
+   width: 350px;
+margin-top: 80px;
+}
+.fifthsection .A2 h2,.fifthsection .A2 p{
+    margin: 0;
+    float: left;
+}
+.fifthsection .A2 img{
+    float: left;
+    margin-top: 80px;
+}
+.sixthsection{
+    text-align: center;
+    width: 100%;
+    height: 1084px;
+    font-family: 'Montserrat',sans-serif;
+
+}
+.sixthsection h1{
+    text-align: center;
+    font-size: 44px;
+}
+.sixthsection h2{
+    text-align: center;
+    font-size: 20px;
+    line-height: 28px;
+    opacity: 0.7;
+ 
+}
+.photos{
+  display: inline-block;
+  min-width: 800px;
+ 
+}
+.photos img{
+    margin: 30px;
+    border: 1px dashed black;
+}
+.photos img:first-child{
+    border: none;
+}
+.seventhsection{
+    font-family: 'Montserrat';
+    line-height:26px;
+    height: 700px;
+    width: 100%;
+    text-align: center;    
+}
+.seventhsection form{
+    width: 470px;
+    height: 560px;
+    border: 1.2px solid rgba(0, 0, 0,0.15);
+    border-radius: 10px;
+  
+    display: inline-block;
+    margin-top: 70px;
+
+}
+.seventhsection article{
+    display: inline-block;
+    vertical-align: top;
+    margin: 188px auto auto 200px;
+}
+.seventhsection h1{
+    
+    font-size: 42px;
+    
+}
+.seventhsection h1,.seventhsection p{
+   
+    margin: 0;
+   
+}
+.seventhsection p{
+    width: 351px;
+    margin-top: 30px;
+ 
+
+}
+.seventhsection main{
+
+   display: inline-block;
+}
+footer{
+    background-color: #2e3033;
+    width: 100%;
+    height: 410px;
+}
