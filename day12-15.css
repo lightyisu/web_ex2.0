@@ -1,0 +1,357 @@
+
+
+@font-face{
+    font-family: 'ProximaNova';
+    src: url(ProximaNova/ProximaNova-Light.otf);
+
+}
+html,body{
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+aside{
+    float: left;
+    font-size: 0;
+}
+.left{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100%;
+  
+    background-color: #1D2531;
+  
+    text-align: center;
+}
+.left img{
+ margin-top: 20px;
+
+}
+.left img:last-child{
+    position: fixed;
+    bottom: 20px;
+    left: 26px;;
+}
+.left2{
+    position: fixed;
+    left: 100px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #222C3C;
+
+}
+.left2 .content{
+    font-family:  'ProximaNova';
+    position: relative;
+    margin-left: 40px;
+}
+.left2 h1{
+    text-transform: uppercase;
+    color: #5B6779;
+    font-size: 18px;
+    margin-top: 30px;
+}
+.content .setting{
+    position: absolute;
+    right: 30px;
+    top: 0px;
+}
+.content p{
+    font-size: 15px;
+    color: #ffffff;
+    opacity: 0.7;
+}
+.left2 hr{
+  width: 85%;
+  
+  margin-top: 29px;
+ opacity: 0.2;
+}
+.content svg{
+    float: right;
+    margin-right: 20px;
+}
+.left2 .secondary .icon{
+   display: inline-block;
+}
+.left2 .secondary p{
+    display: inline-block;
+    margin-left: 13px;
+
+}
+.left2 .content .bottom{
+    color: #ffffff;
+    font-size: 16px;
+    position: fixed;
+    left: 130px;
+    bottom: 20px;
+}
+ .content .bottom .money{
+     opacity: 0.6;
+
+ }
+ .info-flow{
+    
+     font-family:'ProximaNova';
+     position: relative;
+     left: 350px;
+     float: left;
+     width: calc(100% - 350px);
+    
+     
+ }
+ .info-flow .top{
+     height: 80px;
+     position: fixed;
+     left: 350px;
+     top: 0;
+     box-shadow:0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+     width: calc(100% - 350px);
+     min-width: 500px;
+    
+ }
+ .info-flow h1{
+     margin-left: 30px;
+     vertical-align: center;
+     font-size: 28px;
+     color: #354052;
+     opacity: 0.8;
+ }
+ .info-flow .top .profile{
+     position: relative;
+    margin-top: 11px;
+    float: right;
+ }
+
+ .info-flow .top .profile h3{
+display: inline-block;
+color: #B5B5B5;
+font-size: 17px;
+position: relative;
+left: -67px;
+top: -10px;
+ }
+ .info-flow .top .profile h2{
+     color: #2399F1;
+     font-size: 16px;
+     vertical-align: top;
+     display: inline-block;
+ }
+ .info-flow .top .dropdown{
+  margin: 25px;
+  cursor: pointer;
+ }
+ .info-flow .contacts{
+     position: relative;
+     top: 80px;
+     width: 400px;
+   float: left;
+   box-sizing: border-box;
+ }
+ .info-flow .contacts .search{
+     box-sizing: border-box;
+     width: 100%;
+     height: 66px;
+     border: 1px solid #E5E8EE;
+ }
+ .info-flow .contacts .search input{
+     width: 340px;
+     margin: 15px 30px;
+     height: 36px;
+     border: 1.4px solid #E5E8EE;
+     border-radius: 4px;
+     font-size: 14px;
+     color: #9FA9BA;
+     padding: 10px;
+     font-weight: bold;
+     background-image: url(day12-15img/Search\ icon@2x.png);
+     background-position:300px 10px;
+     background-repeat: no-repeat;
+
+
+ }
+.info-flow .contacts .card{
+    position: relative;
+    width: 400px;
+    box-sizing: border-box;
+    height: 130px;
+    border: 1.2px solid #E5E8EE;
+    border-top: none;
+}
+.info-flow .contacts img{
+    position: absolute;
+    left: 30px;
+    top: 10px;
+}
+.info-flow .contacts .card h1{
+   
+    position: absolute;
+    left: 60px;
+    top: 5px;
+    font-size: 16px;
+    font-weight: bolder;
+}
+.info-flow .contacts .card .first{
+    color: #2399F1;
+
+}
+.info-flow .contacts .card .replytime{
+    right: 22px;
+    top: 10px;
+    position: absolute;
+    color: #7F8FA4;
+    font-weight: bold;
+}
+.info-flow .contacts .from{
+    position: absolute;
+    left: 88px;top: 40px;
+    color: #B5B5B5;
+    font-size: 14px;
+}
+.info-flow .contacts .card p{
+    position: absolute;
+    top: 50px;
+    left: 29px;
+    width: 350px;
+    
+}
+.info-flow .contacts .card .bluepoint{
+    position: absolute;
+    left: 355px;
+    bottom: 10px;
+}
+.info-flow .contacts .one{
+    border-left: 5px solid #2399F1;
+}
+.info-flow .message{
+    width: calc(100% - 401.51px);
+    position: relative;
+    top: 80px;
+    height: 1000px;
+    float: left;
+    box-sizing: border-box;
+   
+}
+
+.info-flow .message .message-title h1{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.info-flow .message .message-title{
+    width: 100%;
+    height: 66px;
+    border: 1px solid #E5E8EE;
+    position: relative;
+    min-width: 510.48px;
+}
+.info-flow .message .message-title .tool{
+    width:109px;
+height:32px;
+background:linear-gradient(0deg,rgba(241,243,247,1),rgba(255,255,255,1));
+border:1px solid rgba(206, 208, 218, 1);
+border-radius:4px;
+position: absolute;
+right: 195px;
+top: 16px;
+}
+.info-flow .message .message-title img{
+   margin: 7.6px;
+    cursor: pointer;
+}
+.info-flow .message .message-title .pagenumber{
+    position: absolute;
+    right: 112px;
+  top: 25px;
+  color: #56688A;
+  font-weight: bold;
+}
+.tool2{
+    width:73px;
+height:32px;
+background:linear-gradient(0deg,rgba(241,243,247,1),rgba(255,255,255,1));
+border:1px solid rgba(206, 208, 218, 1);
+border-radius:4px;
+position: absolute;
+right: 10px;
+top: 16px;
+}
+.pointer2{
+    display: inline-block;  
+        margin: 7.2px;  
+        border-top: 2.4px solid;
+        border-right: 2.4px solid;  
+        width: 12px;
+        height: 12px;  
+        transform: rotate(45deg); 
+        opacity: 0.4;
+        vertical-align: center;
+}
+.pointer1{
+    display: inline-block;  
+    margin: 7.2px;  
+    border-top: 2.4px solid;
+    border-right: 2.4px solid;  
+    width: 12px;
+    height: 12px;  
+    transform: rotate(220deg); 
+    margin-left: 15px;
+    opacity: 0.4;
+
+}
+.info-flow .message article{
+    border: 1px solid #E5E8EE;
+    border-bottom: none;
+    padding: 15px;
+    padding-left: 80px;
+    padding-top: 30px;
+   overflow: auto;
+}
+.info-flow .message article h1{
+    font-size: 22px;
+    margin: 0;
+    float: left;
+}
+.info-flow .message article h1::after{
+    content:"8:31AM";
+    font-size: 15px;
+    margin-left: 15px;
+    opacity: 0.7;
+    font-weight: bolder;
+}
+.info-flow .message article p{
+    clear: left;
+    width: 80%;
+    opacity: 0.9;
+    line-height: 19px;
+}
+.info-flow .message .messageinfo img{
+ float: left;
+ margin-right: 20px;
+}
+.info-flow .message .messageinfo p{
+    float: left;
+}
+
+.order {
+    clear: both;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    opacity: 0.6;
+ }
+  .order .line {
+    display: inline-block;
+    width: 40%;
+    border-top: 1px solid #ccc ;
+ }
+ .order .txt {
+    color: #686868;
+    vertical-align: middle;
+ }
+ .order .blue{
+     border-color: #2399F1;
+     color: #2399F1;
+ }
