@@ -100,6 +100,7 @@ aside{
      left: 350px;
      float: left;
      width: calc(100% - 350px);
+     height: 100%;
     
      
  }
@@ -150,6 +151,9 @@ top: -10px;
      width: 400px;
    float: left;
    box-sizing: border-box;
+   height: 100%;
+   border-bottom: 1px solid #E5E8EE;
+   border-right: 1px solid #E5E8EE;
  }
  .info-flow .contacts .search{
      box-sizing: border-box;
@@ -162,6 +166,7 @@ top: -10px;
      margin: 15px 30px;
      height: 36px;
      border: 1.4px solid #E5E8EE;
+     border-right: none;
      border-radius: 4px;
      font-size: 14px;
      color: #9FA9BA;
@@ -179,6 +184,7 @@ top: -10px;
     box-sizing: border-box;
     height: 130px;
     border: 1.2px solid #E5E8EE;
+    border-right: none;
     border-top: none;
 }
 .info-flow .contacts img{
