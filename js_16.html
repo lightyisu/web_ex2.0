@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <h1>计算器</h1>
+<p>2019.9.13</p>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+           
+            
+        
+            document.getElementById("add-btn").onclick=function(){
+            var fnumber=document.getElementById("first-number").value;
+            var snumber=document.getElementById("second-number").value;
+            var first=parseInt(fnumber,10);
+            var second=parseInt(snumber,10);
+            document.getElementById("result").innerHTML=first+second;
+              
+          }
+          document.getElementById("minus-btn").onclick=function(){
+            var fnumber=document.getElementById("first-number").value;
+            var snumber=document.getElementById("second-number").value;
+            var first=parseInt(fnumber,10);
+            var second=parseInt(snumber,10);
+            document.getElementById("result").innerHTML=first-second;
+
+          }
+          document.getElementById("times-btn").onclick=function(){
+            var fnumber=document.getElementById("first-number").value;
+            var snumber=document.getElementById("second-number").value;
+            var first=parseInt(fnumber,10);
+            var second=parseInt(snumber,10);
+            document.getElementById("result").innerHTML=first*second;
+
+          }
+          document.getElementById("divide-btn").onclick=function(){
+            var fnumber=document.getElementById("first-number").value;
+            var snumber=document.getElementById("second-number").value;
+            var first=parseInt(fnumber,10);
+            var second=parseInt(snumber,10);
+            document.getElementById("result").innerHTML=first/second;
+
+          }
+        
+        
+        
+    </script>
+</body>
+</html>

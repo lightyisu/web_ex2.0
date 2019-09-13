@@ -98,10 +98,28 @@
         </div>
 
     </div>
+    
+   <br/>
+   <br>
+    
+    <button  id="sayhi" style="background-color:rgb(84, 141, 228);color: white;border: none;padding: 10px;cursor: pointer;">和我打个招呼</button>
+    <button id="hobby" style="background-color:rgb(84, 141, 228);color: white;border: none;padding: 10px;cursor: pointer;">点开兴趣爱好</button>
+    <div id="hobbycontent" >
+    
+    </div>
 
-
-
-
+<script>
+document.getElementById("sayhi").onclick=function(){
+    alert("hi，你好呀");
+    console.log("hi你在这也能看到我哦");
+}
+document.getElementById("hobby").onclick=function(){
+    document.getElementById("hobbycontent").innerHTML="兴趣爱好：看书跑步";
+    console.log("兴趣爱好");
+    console.log("看书 跑步");
+    
+}
+</script>
 </body>
 
 </html>
