@@ -7,8 +7,8 @@
 <body>        
     <h1>计算器</h1>
 <p>2019.9.13</p>
-    <input id="first-number" type="number" value="0" placeholder="第一个数字">
-    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <input id="first-number" type="number" value="" placeholder="第一个数字">
+    <input id="second-number" type="number" value="" placeholder="第二个数字">
     <button id="add-btn">加</button>
     <button id="minus-btn">减</button>
     <button id="times-btn">乘</button>
@@ -24,6 +24,16 @@
             var first=parseInt(fnumber,10);
             var second=parseInt(snumber,10);
             document.getElementById("result").innerHTML=first+second;
+            try{
+              if(fnumber==""||snumber=="") throw "不能为空";
+          
+             if(fnumber==0||snumber==0) throw "不能为空";
+
+            }
+            catch(err){
+              console.log("错误："+err+".");
+              document.getElementById('result').innerHTML="错误："+err+".";
+            }
               
           }
           document.getElementById("minus-btn").onclick=function(){
@@ -32,6 +42,16 @@
             var first=parseInt(fnumber,10);
             var second=parseInt(snumber,10);
             document.getElementById("result").innerHTML=first-second;
+            try{
+              if(fnumber==""||snumber=="") throw "不能为空";
+            
+             if(fnumber==0||snumber==0) throw "不能为空";
+
+            }
+            catch(err){
+              console.log("错误："+err+".");
+              document.getElementById('result').innerHTML="错误："+err+".";
+            }
 
           }
           document.getElementById("times-btn").onclick=function(){
@@ -41,6 +61,16 @@
             var second=parseInt(snumber,10);
             document.getElementById("result").innerHTML=first*second;
 
+    try{
+              if(fnumber==""||snumber=="") throw "不能为空";
+            
+             if(fnumber==0||snumber==0) throw "不能为空";
+
+            }
+            catch(err){
+              console.log("错误："+err+".");
+              document.getElementById('result').innerHTML="错误："+err+".";
+            }
           }
           document.getElementById("divide-btn").onclick=function(){
             var fnumber=document.getElementById("first-number").value;
@@ -48,8 +78,20 @@
             var first=parseInt(fnumber,10);
             var second=parseInt(snumber,10);
             document.getElementById("result").innerHTML=first/second;
+            
+            try{
+              if(fnumber==""||snumber=="") throw "不能为空";
+              if(snumber==0) throw "除数不能为0";
+             if(fnumber==0||snumber==0) throw "不能为空";
+
+            }
+            catch(err){
+              console.log("错误："+err+".");
+              document.getElementById('result').innerHTML="错误："+err+".";
+            }
 
           }
+    
         
         
         
