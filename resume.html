@@ -7,6 +7,9 @@
 </head>
 
 <body>
+    <h1 id="morning" style="display: none">早上好，新的一天开始了</h1>
+    <h1 id="noon" style="display: none">中午好，吃饭了吗</h1>
+    <h1 id="evening" style="display: none">晚上好，早睡早起</h1>
     <div class="aside">
         <h1>简历</h1>
     </div>
@@ -119,6 +122,21 @@ document.getElementById("hobby").onclick=function(){
     console.log("看书 跑步");
     
 }
+function displayGreeting(){
+    var myDate=new Date();
+    var h=myDate.getHours();
+    if(h<=10){
+        document.getElementById('morning').style.display='';
+    }
+    else if(h>10&&h<=13){
+        document.getElementById('nonn').style.display='';
+    }
+    else{
+        document.getElementById('evening').style.display='';
+  
+    }
+}
+displayGreeting();
 </script>
 </body>
 
