@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        div {
+            height: 500px;
+            width: 480px;
+            background-image: url(erik.jpg);
+            background-repeat: no-repeat;
+            background-position: 0 0px;
+            /** 基准移动单位480px**/
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="roundedBox"></div>
+    <script>
+        var div = document.querySelector('div');
+        var movedown = -480;
+        var moveup = 0;
+        function smile() {
+            if (movedown > -8160) {
+                div.style.backgroundPosition = 0 + "px " + movedown + "px";
+                movedown -= 480;
+                console.log(movedown);
+                setTimeout(smile, 100);
+            }
+            else {
+
+                div.style.backgroundPosition = 0 + 'px ' + -8160 + 'px';
+                moveup += 480;
+                setTimeout(smile, 100);
+            }
+
+        }
+        smile();
+    </script>
+
+</body>
+
+</html>
