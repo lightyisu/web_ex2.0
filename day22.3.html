@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <input type="text" id="str">
+    <button>去掉字符串头尾空格</button>
+    <button>去掉重复的地方</button>
+    <p id="result"></p>
+    <script>
+        /*
+实现一个字符串头尾去除空格的函数
+注意需要去除的空格，包括全角、半角空格
+暂时不需要学习和使用正则表达式的方式
+
+*/
+
+        function diyTrim() {
+
+            var str = document.getElementById('str').value;
+            var i;
+            for (i = 0; i < str.length; i++) {
+                if (str.charAt(i) != " ") break;
+            }
+            str = str.substr(i, str.length);
+            var j;
+            for (j = 0; j < str.length; j++) {
+                if (str.charAt(j) == " ") break;
+
+            }
+            str = str.substr(0, j);
+            document.querySelector('p').innerHTML = str;
+            console.log(str.length);
+        }
+document.querySelectorAll('button')[0].onclick=diyTrim;
+        /*
+        去掉字符串str中，连续重复的地方
+        */
+        function removeRepetition() {
+            var str=document.getElementById('str').value;
+            var i;
+     
+            for(i=0;i<str.length-1;i++){
+                if(str.charAt(i)==str.charAt(i+1)){
+                  strTemp=str
+                }
+            }
+            document.querySelector('p').innerHTML=str;
+        }
+        document.querySelectorAll('button')[1].onclick=removeRepetition;
+
+    </script>
+</body>
+
+</html>
