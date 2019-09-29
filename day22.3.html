@@ -35,22 +35,26 @@
             document.querySelector('p').innerHTML = str;
             console.log(str.length);
         }
-document.querySelectorAll('button')[0].onclick=diyTrim;
+        document.querySelectorAll('button')[0].onclick = diyTrim;
         /*
         去掉字符串str中，连续重复的地方
         */
+        //Made by ttt.bz 
+        //字符串————转数组 寻找相同 删除前一个相同元素 
+        //再转为字符串链接为空
         function removeRepetition() {
-            var str=document.getElementById('str').value;
+            var str = document.getElementById('str').value;
             var i;
-     
-            for(i=0;i<str.length-1;i++){
-                if(str.charAt(i)==str.charAt(i+1)){
-                  
+            var strArr = str.split("");
+
+            for (i = 0; i < str.length - 1; i++) {
+                if (strArr[i] == strArr[i + 1]) {
+                    strArr[i] = '';
                 }
             }
-            document.querySelector('p').innerHTML=str;
+            document.querySelector('p').innerHTML = strArr.join('');
         }
-        document.querySelectorAll('button')[1].onclick=removeRepetition;
+        document.querySelectorAll('button')[1].onclick = removeRepetition;
 
     </script>
 </body>
