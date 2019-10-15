@@ -6,98 +6,139 @@
 </head>
 
 <body>
+    
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+    <br/>
+    <br/>
+    <input id="stack-input" type="text">
+    <p id="stack-cont">栈内容：apple-&gt;pear</p>
+    <button id="push-btn">进栈</button>
+    <button id="pop-btn">退栈</button>
+    <button id="stack-font-btn">打印栈顶元素内容</button>
+    <button id="stack-empty-btn">判断栈是否为空</button>
+
+ 
+
     <script>
-        var tree = {
-            "id": 0,
-            "name": "root",
-            "left": {
-                "id": 1,
-                "name": "Simon",
-                "left": {
-                    "id": 3,
-                    "name": "Carl",
-                    "left": {
-                        "id": 7,
-                        "name": "Lee",
-                        "left": {
-                            "id": 11,
-                            "name": "Fate"
-                        }
-                    },
-                    "right": {
-                        "id": 8,
-                        "name": "Annie",
-                        "left": {
-                            "id": 12,
-                            "name": "Saber"
-                        }
-                    }
-                },
-                "right": {
-                    "id": 4,
-                    "name": "Tony",
-                    "left": {
-                        "id": 9,
-                        "name": "Candy"
-                    }
+
+        /**--------队列开始Queue start--------------**/
+        function Queue() {                   //队列构造
+            let items = ["apple", "pear"];
+            this.enqueue = function (element) {
+                items.push(element);
+            }
+            this.dequeue = function () {
+                items.shift();
+            }
+            this.font = function () {
+                return items[0];
+            }
+            this.isEmpty = function () {
+                if (items.length === 0) {
+                    console.log('Queue is empty.');
+
                 }
-            },
-            "right": {
-                "id": 2,
-                "name": "right",
-                "left": {
-                    "id": 5,
-                    "name": "Carl",
-                },
-                "right": {
-                    "id": 6,
-                    "name": "Carl",
-                    "right": {
-                        "id": 10,
-                        "name": "Kai"
-                    }
+                else {
+                    console.log('Queue is not empty.')
                 }
             }
+            this.print = function () {
+                console.log(items);
+            }
+            this.realprint = function () {
+                return items.join('-&gt');
+            }
+            this.lastIndexPrint = function () {
+                return items[items.length - 1];
+            }
         }
-    function BinaryTree(){
+        let queue = new Queue();
+        /**-----------------------------入队------------------**/
+        document.getElementById('in-btn').addEventListener('click', function () {
+            var value = document.getElementById('queue-input').value;
 
-        var Node=function(key){
-            this.key=key;
-            this.left=null;
-            this.right=null;
+            queue.enqueue(value);
+            queue.print();
+            document.getElementById('queue-cont').innerHTML += '-&gt;' + value;
 
-        }
-        var root=null;
-        var insertNode=function(node,newNode){
-            if(newNode.key<node.key){
-                if(node.left==null){
-                    node.left=newNode;
+        })
+        /**---------------------------------出队-------------------------**/
+        document.getElementById('out-btn').addEventListener('click', function () {
+            queue.dequeue();
+            queue.print();
+            document.getElementById('queue-cont').innerHTML = "队列内容&nbsp;: " + queue.realprint();
+        })
+        /**-------------------------------打印队头元素------------------------------**/
+        document.getElementById('font-btn').addEventListener('click', function () {
+            console.log(queue.lastIndexPrint());
+        })
+        /**--------------------------------判断是否为空----------------------------**/
+        document.getElementById('empty-btn').addEventListener('click', function () {
+            queue.isEmpty();
+        })
+        /**-------------------------------------队列结束-------------------------**/
+
+        /**-------------------------------------栈开始---------------------------**/
+        /**-------------------------------------stack start---------------------**/
+        function Stack(){
+            let items=["apple", "pear"];
+            this.addStack=function(element){
+                items.unshift(element);
+            }
+            this.print=function(){
+                console.log(items);
+            }
+            this.realPrint=function(){
+               return items.join("-&gt")
+            }
+            this.popStack=function(){
+                items.shift();
+            }
+            this.font=function(){
+                return items[0];
+            }
+            this.isEmpty=function(){
+                if(items.length===0){
+                    console.log('stack is empty.');
                 }
                 else{
-                    insertNode(node.left,newNode);
-                }
-            }
-            if(newNode.key>node.key){
-                if(node.right==null){
-                    node.right=newNode;
-                }
-                else{
-                    insertNode(node.right,newNode);
+                    console.log('stack is not empty.')
                 }
             }
         }
-        this.insert=function(key){
-            var newNode=new Node(key);
-            if(root==null){
-                root=newNode;
-            }
-            else{
-                insertNode(root,newNode);
-            }
-        }
-    } 
-    var binaryTree=new BinaryTree();
-    t
+        let stack=new Stack();
+        /**-------------开始进栈--------------**/
+        document.getElementById('push-btn').addEventListener('click',function(){
+          var value=document.getElementById('stack-input').value;
+          stack.addStack(value);
+          stack.print();
+          document.getElementById('stack-cont').innerHTML="栈内容 :"+stack.realPrint();
+          
+        })
+        /**-------------开始退栈---------------**/
+        document.getElementById('pop-btn').addEventListener('click',function(){
+            stack.popStack();
+            stack.print();
+            document.getElementById('stack-cont').innerHTML="栈内容 :"+stack.realPrint();
+        })
+        /**--------------打印栈顶内容--------------**/
+        document.getElementById('stack-font-btn').addEventListener('click',function(){
+            console.log(stack.font());
+        })
+        /**---------------判断栈是否为空------------**/
+        document.getElementById('stack-empty-btn').addEventListener('click',function(){
+            stack.isEmpty();
+
+
+        })
+
+
+
     </script>
 </body>
 
