@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <p id="result"></p>
+    <script>
+        var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];   //将上面数组分别按从大到小以及从小到大进行排序后在console中输出
+        //从小到大
+        function sortArr() {
+            arr.sort((a, b) => a - b);
+            document.getElementById('result').innerHTML = "从小到大" + arr;
+        }
+        function sortArr2() {
+            arr.sort((a, b) => b - a);
+            document.getElementById('result').innerHTML = '从大到小' + arr;
+        }
+        var arrString = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+        function sortArrString() {
+            arrString.sort(function (a, b) {
+                if (a < b) {
+                    return -1;
+                }
+                if (a > b) {
+                    return 1;
+                }
+                return 0;
+            })
+            console.log(arrString);
+        }
+        function ReverseSortArrString() {
+            arrString.sort(function (a, b) {
+                if (a > b) {
+                    return -1;
+                }
+                if (a > b) {
+                    return 1;
+                }
+                return 0;
+            })
+            console.log(arrString);
+        }
+        var arrDouble = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+        function sortDouble() {
+            arrDouble.sort(function (a, b) {
+                return a[1] - b[1];
+            }
+            )
+            console.log(arrDouble);
+
+        }
+        function ReverseDouble() {
+            arrDouble.sort(function (a, b) {
+                return b[1] - a[1];
+            })
+            console.log(arrDouble);
+        }
+
+
+        var arrObject = [
+            {
+                id: 1,
+                name: 'candy',
+                value: 40
+            }, {
+                id: 2,
+                name: 'Simon',
+                value: 50
+            }, {
+                id: 3,
+                name: 'Tony',
+                value: 45
+            }, {
+                id: 4,
+                name: 'Annie',
+                value: 60
+            }
+        ];
+        function sortObject() {
+            arrObject.sort(function (a, b) {
+                return a.value - b.value;
+            })
+            console.log(arrObject);
+
+        }
+
+
+
+
+        var scoreObject = {
+            "Tony": {
+                "Math": 95,
+                "English": 79,
+                "Music": 68
+            },
+            "Simon": {
+                "Math": 100,
+                "English": 95,
+                "Music": 98
+            },
+            "Annie": {
+                "Math": 54,
+                "English": 65,
+                "Music": 88
+            }
+        }
+
+
+        function Obj2Array() {
+            let arr1 = [];
+            for (let i in scoreObject) {
+                let arr = [];
+                arr.push(i);
+                let obj = scoreObject[i];
+                for (var childI in obj) {
+                    arr.push(obj[childI]);
+                }
+                arr1.push(arr);
+            }
+
+            console.log(arr1);
+        }
+
+        var menuArr = [
+            [1, "Area1", -1],
+            [2, "Area2", -1],
+            [3, "Area1-1", 1],
+            [4, "Area1-2", 1],
+            [5, "Area2-1", 2],
+            [6, "Area2-2", 2],
+            [7, "Area1-2-3", 4],
+            [8, "Area2-2-1", 6],
+        ];
+        function Arr2Object(){
+            var list={};
+            for(let key in menuArr){
+                list[key]=menuArr[key];
+            }
+            console.log(list);
+        }
+    </script>
+</body>
+
+</html>

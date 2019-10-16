@@ -1,24 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <meta charset="utf-8">
-    </head>
-    <body>
-            <input id="queue-input" type="text">
-            <p id="queue-cont">队列内容：apple&lt;-pear</p>    
-            <button id="in-btn">入队</button>
-            <button id="out-btn">出队</button>
-            <button id="font-btn">打印队头元素内容</button>
-            <button id="empty-btn">判断队列是否为空</button>
-            
-            <script>
-            
-            var queue = ["apple", "pear"];
-            function queue(){
-                let items=[];
-                
+</head>
+
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple&lt;-pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+
+
+
+    <br/>
+    <br/>
+
+    <input id="stack-input" type="text">
+    <p id="stack-cont">栈内容：apple&lt;-pear</p>
+    <button id="push-btn">进栈</button>
+    <button id="pop-btn">退栈</button>
+    <button id="font-btn">打印栈顶元素内容</button>
+    <button id="empty-btn">判断栈是否为空</button>
+
+ 
+
+    <script>
+
+        function Queue() {
+            let items = ["apple", "pear"];
+            this.enqueue = function (ele) {
+                items.unshift(ele);
             }
-            
-            </script>
-    </body>
+            this.print = function () {
+                console.log(items);
+            }
+            this.realprint = function () {
+                return items.join("&lt");
+            }
+            this.dequeue = function () {
+                items.pop();
+            }
+            this.font = function () {
+                return items[0];
+            }
+            this.isEmpty = function () {
+                if (items.length === 0) {
+                    console.log('queue is Empty.');
+                }
+                else {
+                    console.log('queue is not Empty.')
+                }
+            }
+        }
+        let queue = new Queue();
+        document.getElementById('in-btn').addEventListener('click', function () {
+            var value = document.getElementById('queue-input').value;
+            queue.enqueue(value);
+            queue.print();
+            document.getElementById('queue-cont').innerHTML = "队列内容： " + queue.realprint();
+
+        })
+        document.getElementById('out-btn').addEventListener('click', function () {
+            queue.dequeue();
+            queue.print();
+            document.getElementById('queue-cont').innerHTML = "队列内容： " + queue.realprint();
+        })
+        document.getElementById('font-btn').addEventListener('click', function () {
+            console.log(queue.font());
+
+        })
+        document.getElementById('empty-btn').addEventListener('click', function () {
+            queue.isEmpty();
+
+        })
+
+
+
+
+
+
+        function Stack(){
+            let items=["apple", "pear"];
+            this.addStack=function(ele){
+                items.unshift(ele);
+            }
+            this.print=function(){
+                console.log(items);
+            }
+            this.realPrint=function(){
+                return items.join('&lt');
+            }
+            this.deStack=function(){
+                items.shift();
+            }
+        }
+        let stack=new Stack();
+ 
+        document.getElementById('push-btn').addEventListener('click',function(){
+            var value=document.getElementById('stack-input').value;
+            stack.addStack(value);
+            stack.print();
+            document.getElementById('stack-cont').innerHTML="栈内容: "+stack.realPrint();
+        })
+        document.getElementById('pop-btn').addEventListener('click',function(){
+            stack.deStack();
+            stack.print;
+            document.getElementById('stack-cont').innerHTML="栈内容: "+stack.realPrint();
+        })
+
+    </script>
+</body>
+
 </html>
