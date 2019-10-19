@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p id="result"></p>
+        <p id="result2"></p>
+        <script>
+   
+            function weekdayWhich(date){
+            var weekday=date.getDay();
+            var wday;
+            switch(weekday){
+                case 1:
+                wday="星期一";
+                break;
+                case 2:
+                wday="星期二";
+                break;
+                case 3:
+                wday="星期三";
+                break;
+                case 4:
+                wday="星期四";
+                break;
+                case 5:
+                wday="星期五";
+                break;
+                case 6:
+                wday="星期六";
+                break;
+                case 7:
+                wday="星期日";
+                break;
+            }
+            return wday;
+
+        }
+        function addZero(date){
+          
+            var hour=date.getHours();
+            if(hour.toString().length==1){
+                hour="0"+hour;
+            }
+
+            var minutes=date.getMinutes();
+            if(minutes.toString().length==1){
+                minutes="0"+minutes;
+            }
+            var seconds=date.getSeconds();
+            if(seconds.toString().length==1){
+                seconds="0"+seconds;
+            }
+            return hour+":"+minutes+":"+seconds
+
+
+        }
+        function addZeroMonth(date){
+          
+          var month=date.getMonth();
+          if(month.toString().length==1){
+              month="0"+month;
+          }
+
+          return month+"月";
+
+
+      }
+        function showTime(){
+            var date=new Date();
+            var year=date.getFullYear();
+            var day=date.getDate();
+            var seconds=date.getSeconds();
+            document.getElementById('result').innerHTML=year+"年"+addZeroMonth(date)+day+"日"+weekdayWhich(date)+" "+addZero(date);
+            setTimeout(showTime,1000);
+        }
+      function showTime2(){
+          var date=new Date(); 
+            var year=date.getFullYear();
+            var day=date.getDate(); var month=date.getMonth();
+
+            var seconds=date.getSeconds();
+
+            document.getElementById('result2').innerHTML=year+"-"+month+"-"+day+addZero(date);
+            setTimeout(showTime2,1000);
+      }
+        setTimeout(showTime,1000);
+        setTimeout(showTime2,1000);
+
+        
+        </script>
+    </body>
+</html>

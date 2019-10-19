@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2003">2003</option>
+        <option value="2004">2004</option>
+        <option value="2005">2005</option>
+        <option value="2006">2006</option>
+        <option value="2007">2007</option>
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+    </select>
+
+    <select id="month-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+
+        <option value="31">31</option>
+    </select>
+
+    <select id="hour-select">
+        <option value="0">00</option>
+        <option value="1">01</option>
+
+        <option value="23">23</option>
+    </select>
+
+    <select id="minute-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+
+        <option value="59">59</option>
+    </select>
+
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="59">59</option>
+    </select>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <script>
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var day = date.getDate();
+       
+        function change(){      
+            var year = document.getElementById('year-select').value;
+            var month = document.getElementById('month-select').value;
+            var day = document.getElementById('day-select').value;
+            var currentDate=new Date();
+            var newDate=new Date();
+            newDate.setFullYear(year,month,day);
+            var dateDiff=currentDate.getTime()-newDate.getTime();
+            var dayDiff=Math.floor(dateDiff / (24 * 3600 * 1000));
+            var hourLevel =dateDiff% (24 * 60 * 60 * 1000);
+                var hours = Math.floor(hourLevel / (60 * 60 * 1000));
+            document.getElementById('result-wrapper').innerHTML = "现在距离" + " " + year + "年" + month + "月" + day + "日"+" "+weekdayWhich(weekday(year,month,day))+addZero()+"还有"+dayDiff+"天"+hours+"小时";
+        }
+        function addZero(){
+ 
+            var hour=document.getElementById('hour-select').value;
+            var minute=document.getElementById('minute-select').value;
+            var second=document.getElementById('second-select').value;
+            if(hour.toString().length==1){
+                hour="0"+hour;
+            }
+            if(minute.toString().length==1){
+                minute='0'+minute;
+            }
+            if(second.toString().length==1){
+                second='0'+second;
+            }
+            return hour+":"+minute+":"+second;
+        }
+        function weekday(year,month,day){
+            var newDate=new Date();
+            month+=1;
+            newDate.setFullYear(year,month,day);
+            return newDate.getDay(); 
+        }
+
+         function weekdayWhich(week){
+          
+            var wday;
+            switch(week){
+                case 1:
+                wday="星期一";
+                break;
+                case 2:
+                wday="星期二";
+                break;
+                case 3:
+                wday="星期三";
+                break;
+                case 4:
+                wday="星期四";
+                break;
+                case 5:
+                wday="星期五";
+                break;
+                case 6:
+                wday="星期六";
+                break;
+                case 0:
+                wday="星期日";
+                break;
+            }
+            return wday;
+
+        }
+
+        document.getElementById('year-select').onchange=change;
+        document.getElementById('month-select').onchange=change;
+        document.getElementById('day-select').onchange=change;
+        
+        document.getElementById('minute-select').onchange=change;
+        document.getElementById('hour-select').onchange=change;
+        document.getElementById('second-select').onchange=change;
+
+        
+        </script>
+</body>
+
+</html>
