@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script>
+        var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net'];
+        for (let i = 0; i < postfixList.length; i++) {
+            var li = document.createElement('li');
+            li.style.listStyle = 'none';
+            var textnode = document.createTextNode('');
+            li.appendChild(textnode);
+            document.querySelector('ul').appendChild(li);
+        }
+        document.getElementById('email-input').oninput = function () {     //onkeypress备选方案
+            tips();
+            isDisplay();
+
+        }
+        function getUserEmail() {
+            var userEmail = document.getElementById('email-input').value;
+            return userEmail.trim();
+        }
+
+        function tips() {
+            var textnode;
+
+            for (let i = 0; i < postfixList.length; i++) {
+                if(getUserEmail().indexOf('@')!=-1){
+                    var index=getUserEmail().indexOf('@');
+                    var text=getUserEmail().slice(0,index);
+                    textnode=text+postfixList[i];
+                    var textAfter=getUserEmail().slice(index,getUserEmail().length);
+                   for(let j=0;j<textAfter.length;j++){
+                       if(textAfter.charAt(j)){
+
+                       }
+                   }
+
+                }
+                else{
+                    textnode = getUserEmail() + postfixList[i];
+                }
+                document.querySelector('ul').childNodes[i].childNodes[0].nodeValue = textnode;
+            }
+
+        }
+        function add2Wrapper() {
+            document.getElementById('email-sug-wrapper').appendChild(tips());
+        }
+        function isDisplay() {
+            var userEmail = document.getElementById('email-input').value;
+
+            if (userEmail == "") {
+                document.getElementById('email-sug-wrapper').style.display = 'none';
+            }
+            else {
+                document.getElementById('email-sug-wrapper').style.display = "";
+
+            }
+
+        }
+        isDisplay();
+
+    </script>
+</body>
+
+</html>
