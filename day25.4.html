@@ -33,19 +33,23 @@
             var textnode;
 
             for (let i = 0; i < postfixList.length; i++) {
-                if(getUserEmail().indexOf('@')!=-1){
-                    var index=getUserEmail().indexOf('@');
-                    var text=getUserEmail().slice(0,index);
-                    textnode=text+postfixList[i];
-                    var textAfter=getUserEmail().slice(index,getUserEmail().length);
-                   for(let j=0;j<textAfter.length;j++){
-                       if(textAfter.charAt(j)){
+                if (getUserEmail().indexOf('@') != -1) {                //当@出现时
+                    for (let m = 0; m < postfixList.length; m++) {
+                        document.getElementById('email-sug-wrapper').childNodes[m].style.display = 'none';
 
-                       }
-                   }
-
+                    }
+                  
+                    document.getElementById('email-sug-wrapper').childNodes[0].style.display = '';
+                    var index = getUserEmail().indexOf('@');
+                    var text = getUserEmail().slice(0, index);
+                    textnode = text + postfixList[i];
+                
+                     var textAfter=getUserEmail().slice(index,getUserEmail().length);
+                      
+                       
+                   
                 }
-                else{
+                else {
                     textnode = getUserEmail() + postfixList[i];
                 }
                 document.querySelector('ul').childNodes[i].childNodes[0].nodeValue = textnode;
