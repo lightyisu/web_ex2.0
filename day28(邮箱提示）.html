@@ -3,6 +3,13 @@
 
 <head>
     <meta charset="utf-8">
+<style>
+li:hover{
+    background-color: lightblue;
+    display: inline-block;
+    
+}
+</style>
 </head>
 
 <body>
@@ -19,6 +26,20 @@
             li.appendChild(textnode);
             document.querySelector('ul').appendChild(li);
         }
+
+        window.onload=function(){
+            var ul=document.getElementById('email-sug-wrapper');
+            ul.onclick=function(ev){
+                var ev=ev||window.event;
+                var target=ev.target||ev.srcElement;
+                if(target.nodeName.toLowerCase()=='li'){
+               var tipContent=target.childNodes[0].nodeValue;
+               document.getElementById('email-input').value=tipContent;
+               document.getElementById('email-sug-wrapper').style.display = "none";
+                }
+            }
+
+        }
         document.getElementById('email-input').oninput = function () {     //onkeypress备选方案
             tips();
             isDisplay();
@@ -34,20 +55,21 @@
 
             for (let i = 0; i < postfixList.length; i++) {
                 if (getUserEmail().indexOf('@') != -1) {                //当@出现时
-                    for (let m = 0; m < postfixList.length; m++) {
-                        document.getElementById('email-sug-wrapper').childNodes[m].style.display = 'none';
+                        document.getElementById('email-sug-wrapper').childNodes[i].style.display = 'none';
+               
 
-                    }
-                  
-                    document.getElementById('email-sug-wrapper').childNodes[0].style.display = ''; //to be fixed
+
                     var index = getUserEmail().indexOf('@');
                     var text = getUserEmail().slice(0, index);
                     textnode = text + postfixList[i];
-                
-                     var textAfter=getUserEmail().slice(index,getUserEmail().length);
-                      
-                       
-                   
+                    var textAfter = getUserEmail().slice(index, getUserEmail().length);
+
+                    if(postfixList[i].indexOf(textAfter)!=-1){
+                        document.querySelector('ul').childNodes[i].style.display='';
+                    }
+
+
+
                 }
                 else {
                     textnode = getUserEmail() + postfixList[i];
