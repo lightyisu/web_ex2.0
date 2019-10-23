@@ -10,13 +10,31 @@
     </head>
 
     <body>
-    <ul>
-        <li>ss</li>
-        <li>ssw</li>
-        <li>sqqw</li>
-    </ul>
+    <table border="1px solid red" width='100px'>
+        <tr>
+            <td>!</td>
+            <td>非</td>
+        </tr>
+        <tr>
+            <td>&amp;&amp;</td>
+            <td>与</td>
+        </tr>
+    </table> 
     <script>
-    document.querySelector('ul').childNodes[1].style.display='none';
-    </script>
+document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==27){ // 按 Esc 
+                //要做的事情
+                console.log('aaa');
+              }
+            if(e && e.keyCode==113){ // 按 F2 
+                 //要做的事情
+               }            
+             if(e && e.keyCode==13){ // enter 键
+                 //要做的事情
+            }
+        }; 
+    </script>       
+   
     </body>
 </html>

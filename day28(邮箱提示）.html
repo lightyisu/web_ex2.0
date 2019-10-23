@@ -3,18 +3,28 @@
 
 <head>
     <meta charset="utf-8">
-<style>
-li:hover{
-    background-color: lightblue;
-    display: inline-block;
-    
-}
-</style>
+    <style>
+      
+        ul{
+            display: inline-block;
+        }
+        li:hover{
+            background-color: lightskyblue;
+
+        }
+        #choose{
+            background-color: lightpink;
+        }
+        #choose:hover{
+            background-color: lightpink;
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
         <input id="email-input" type="text">
+        <br/>
         <ul id="email-sug-wrapper" class="email-sug"></ul>
     </div>
     <script>
@@ -26,21 +36,57 @@ li:hover{
             li.appendChild(textnode);
             document.querySelector('ul').appendChild(li);
         }
+        document.getElementById('email-input').focus();//首先给予焦点给输入框
 
-        window.onload=function(){
-            var ul=document.getElementById('email-sug-wrapper');
-            ul.onclick=function(ev){
-                var ev=ev||window.event;
-                var target=ev.target||ev.srcElement;
-                if(target.nodeName.toLowerCase()=='li'){
-               var tipContent=target.childNodes[0].nodeValue;
-               document.getElementById('email-input').value=tipContent;
-               document.getElementById('email-sug-wrapper').style.display = "none";
+        window.onload = function () {
+            var ul = document.getElementById('email-sug-wrapper');
+            ul.onclick = function (ev) {
+                var ev = ev || window.event;
+                var target = ev.target || ev.srcElement;
+                if (target.nodeName.toLowerCase() == 'li') {
+                    var tipContent = target.childNodes[0].nodeValue;
+                    tipContent = HtmlUtil.htmlDecode(tipContent);//进行解码
+                    document.getElementById('email-input').value = tipContent;
+                    document.getElementById('email-sug-wrapper').style.display = "none";
+                    document.getElementById('email-input').focus();//给予焦点给输入框
                 }
             }
 
         }
+
+
+        /*********************main function*********************/
         document.getElementById('email-input').oninput = function () {     //onkeypress备选方案
+            //键盘事件 
+            resetChooseState();
+            document.onkeydown=function(event){
+              
+            var chooseLi=document.getElementById('choose');
+            chooseLi.removeAttribute('id','choose');
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==38){ // 按UP-Arrow 
+                if(chooseLi!=document.querySelectorAll('li')[0]){
+                    chooseLi.previousSibling.setAttribute('id','choose');
+                }
+                else{
+                    document.querySelector('ul').lastChild.setAttribute('id','choose');
+                }
+               
+              }
+            if(e && e.keyCode==40){
+               if(chooseLi!=document.querySelector('ul').lastChild){
+                   chooseLi.nextSibling.setAttribute('id','choose');
+               }
+               else{
+                   document.querySelectorAll('li')[0].setAttribute('id','choose');
+               }
+            
+            }
+           
+               
+          
+         
+        };//键盘事件终止
             tips();
             isDisplay();
 
@@ -50,13 +96,17 @@ li:hover{
             return userEmail.trim();
         }
 
+        
+
+
         function tips() {
             var textnode;
 
             for (let i = 0; i < postfixList.length; i++) {
                 if (getUserEmail().indexOf('@') != -1) {                //当@出现时
-                        document.getElementById('email-sug-wrapper').childNodes[i].style.display = 'none';
-               
+                    
+                    document.getElementById('email-sug-wrapper').childNodes[i].style.display = 'none';
+
 
 
                     var index = getUserEmail().indexOf('@');
@@ -64,8 +114,8 @@ li:hover{
                     textnode = text + postfixList[i];
                     var textAfter = getUserEmail().slice(index, getUserEmail().length);
 
-                    if(postfixList[i].indexOf(textAfter)!=-1){
-                        document.querySelector('ul').childNodes[i].style.display='';
+                    if (postfixList[i].indexOf(textAfter) != -1) {
+                        document.querySelector('ul').childNodes[i].style.display = '';
                     }
 
 
@@ -74,6 +124,7 @@ li:hover{
                 else {
                     textnode = getUserEmail() + postfixList[i];
                 }
+                textnode = HtmlUtil.htmlEncode(textnode);//进行转义编码
                 document.querySelector('ul').childNodes[i].childNodes[0].nodeValue = textnode;
             }
 
@@ -94,6 +145,32 @@ li:hover{
 
         }
         isDisplay();
+
+
+        //转义编码&解码方案
+        var HtmlUtil = {
+            htmlEncode: function (html) {
+                var temp = document.createElement('div');
+                (temp.textContent != undefined) ? (temp.textContent = html) : (temp.innerText = html);
+                var output = temp.innerHTML;
+                temp = null;
+                return output;
+            },
+            htmlDecode: function (text) {
+                var temp = document.createElement('div');
+                temp.innerHTML = text;
+                var output = temp.innerText || temp.textContent;
+                temp = null;
+                return output;
+            }
+        }
+        function resetChooseState(){
+            if(document.getElementById('choose')==null||document.getElementById('choose')!=document.querySelectorAll('li')[0]){
+                
+                document.querySelectorAll('li')[0].setAttribute('id','choose');
+
+            }
+        }
 
     </script>
 </body>
