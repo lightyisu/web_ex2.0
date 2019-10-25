@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <select id="region-select">
+            <option value="eastChina">华东</option>
+            <option value="southChina">华南</option>
+            <option value="northChina">华北</option>
+        </select>
+        <br/>
+        <br/>
+        <div id="table-wrapper">
+         <table border="1">
+             <thead>
+               <tr>
+                   <th>商品</th>
+                   <th>地区</th>
+                   <th>1月</th>
+                   <th>2月</th>
+                   <th>3月</th>
+                   <th>4月</th>
+                   <th>5月</th>
+                   <th>6月</th>
+                   <th>7月</th>
+                   <th>8月</th>
+                   <th>9月</th>
+                   <th>10月</th>
+                   <th>11月</th>
+                   <th>12月</th>
+               </tr>
+             </thead>
+             <tbody>
+               
+             </tbody>
+         </table>   
+        </div>
+        <script src="ife31data.js"></script>
+        <script>
+            /*--------------取出华东华南华北的地区数据-------------*/
+            let eastChinaObj=[];
+            function eastChina(obj){
+                for(let i in obj){
+                    if(obj[i].region=='华东'){
+                    eastChinaObj.push(obj[i]);        
+                    }                 
+                }
+            }
+            let southChinaObj=[];
+            function southChina(obj){
+                for(let i in obj){
+                    if(obj[i].region=='华南'){
+                        southChinaObj.push(obj[i]);
+                    }
+                }
+            }
+            let northChinaObj=[];
+            function northChina(obj){
+                for(let i in obj){
+                    if(obj[i].region=='华北'){
+                        northChinaObj.push(obj[i]);
+                    }
+                }
+                northChinaObj.product;
+            }
+        //对表格开始渲染
+        function renderingTable(regionObj){
+            for(let i=0;i<regionObj.length;i++){
+             var tr=document.createElement('tr');
+             var td=document.createElement('td');
+             var textnode=document.createTextNode(regionObj[i].product);
+             td.appendChild(textnode);
+             tr.appendChild(td);
+             var td2=document.createElement('td');
+             var textnode2=document.createTextNode(regionObj[i].region);
+             td2.appendChild(textnode2);
+             tr.appendChild(td2);
+             for(let j=0;j<regionObj[i].sale.length;j++){
+                 var td3=document.createElement('td');
+                 var textnode3=document.createTextNode(regionObj[i].sale[j]);
+                 td3.appendChild(textnode3);
+                 tr.appendChild(td3);
+             }
+             var tbody=document.querySelector('tbody');
+             tbody.appendChild(tr);
+
+            }
+
+        }
+        //事件触发开始
+        document.getElementById('region-select').addEventListener('change',function(){
+            var rs=document.getElementById('region-select');
+            if(rs.value=='eastChina'){
+                eastChina(sourceData);
+                renderingTable(eastChinaObj);
+            }
+            if(rs.value=='southChina'){
+                southChina(sourceData);
+                renderingTable(southChinaObj);
+            }
+            if(rs.value=='northChina'){
+                northChina(sourceData);
+                renderingTable(northChinaObj);
+            }
+        })
+       
+        //to be fixed on 1025
+        //repeat renderingTable when click once create once
+
+
+
+        </script>
+   
+    </body>
+</html>
