@@ -66,6 +66,12 @@
             }
         //对表格开始渲染
         function renderingTable(regionObj){
+         
+        
+           var tbody=document.querySelector('tbody');
+           if(tbody.childNodes.length!=1){
+           removeAlreadyTable();}
+
             for(let i=0;i<regionObj.length;i++){
              var tr=document.createElement('tr');
              var td=document.createElement('td');
@@ -92,23 +98,39 @@
         document.getElementById('region-select').addEventListener('change',function(){
             var rs=document.getElementById('region-select');
             if(rs.value=='eastChina'){
-                eastChina(sourceData);
+                
                 renderingTable(eastChinaObj);
             }
             if(rs.value=='southChina'){
-                southChina(sourceData);
+        
                 renderingTable(southChinaObj);
             }
             if(rs.value=='northChina'){
-                northChina(sourceData);
+    
                 renderingTable(northChinaObj);
             }
         })
+        //预载数据
+        function perloadData(){
+        eastChina(sourceData);
+        northChina(sourceData);
+        southChina(sourceData);
+        }
+        window.onload=perloadData;
        
         //to be fixed on 1025
         //repeat renderingTable when click once create once
+        //ALL FIXED DONE ON 1026
+        //@TTT.BZ MADE IT
 
 
+        //移除已存在的表格 更新新的表格
+        function removeAlreadyTable(){
+            var tbody=document.querySelector('tbody');
+            while(tbody.firstChild){
+                tbody.removeChild(tbody.firstChild);
+            }
+        }
 
         </script>
    
