@@ -1,123 +1,210 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="select">
         <select id="region-select">
             <option value="eastChina">华东</option>
             <option value="southChina">华南</option>
             <option value="northChina">华北</option>
         </select>
-        <br/>
-        <br/>
-        <div id="table-wrapper">
-         <table border="1">
-             <thead>
-               <tr>
-                   <th>商品</th>
-                   <th>地区</th>
-                   <th>1月</th>
-                   <th>2月</th>
-                   <th>3月</th>
-                   <th>4月</th>
-                   <th>5月</th>
-                   <th>6月</th>
-                   <th>7月</th>
-                   <th>8月</th>
-                   <th>9月</th>
-                   <th>10月</th>
-                   <th>11月</th>
-                   <th>12月</th>
-               </tr>
-             </thead>
-             <tbody>
-               
-             </tbody>
-         </table>   
-        </div>
-        <script src="ife31data.js"></script>
-        <script>
-            /*--------------取出华东华南华北的地区数据-------------*/
-            let eastChinaObj=[];
-            function eastChina(obj){
-                for(let i in obj){
-                    if(obj[i].region=='华东'){
-                    eastChinaObj.push(obj[i]);        
-                    }                 
-                }
-            }
-            let southChinaObj=[];
-            function southChina(obj){
-                for(let i in obj){
-                    if(obj[i].region=='华南'){
-                        southChinaObj.push(obj[i]);
-                    }
-                }
-            }
-            let northChinaObj=[];
-            function northChina(obj){
-                for(let i in obj){
-                    if(obj[i].region=='华北'){
-                        northChinaObj.push(obj[i]);
-                    }
-                }
-                northChinaObj.product;
-            }
-        //对表格开始渲染
-        function renderingTable(regionObj){
-         
-        
-           var tbody=document.querySelector('tbody');
-           if(tbody.childNodes.length!=1){
-           removeAlreadyTable();}
+        <select id="product-select">
+            <option value="phone">手机</option>
+            <option value="laptop">笔记本</option>
+            <option value="smartspeaker">智能音箱</option>
+        </select>
+    </div>
+    <br />
+    <div id="table-wrapper">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>商品</th>
+                    <th>地区</th>
+                    <th>1月</th>
+                    <th>2月</th>
+                    <th>3月</th>
+                    <th>4月</th>
+                    <th>5月</th>
+                    <th>6月</th>
+                    <th>7月</th>
+                    <th>8月</th>
+                    <th>9月</th>
+                    <th>10月</th>
+                    <th>11月</th>
+                    <th>12月</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            for(let i=0;i<regionObj.length;i++){
-             var tr=document.createElement('tr');
-             var td=document.createElement('td');
-             var textnode=document.createTextNode(regionObj[i].product);
-             td.appendChild(textnode);
-             tr.appendChild(td);
-             var td2=document.createElement('td');
-             var textnode2=document.createTextNode(regionObj[i].region);
-             td2.appendChild(textnode2);
-             tr.appendChild(td2);
-             for(let j=0;j<regionObj[i].sale.length;j++){
-                 var td3=document.createElement('td');
-                 var textnode3=document.createTextNode(regionObj[i].sale[j]);
-                 td3.appendChild(textnode3);
-                 tr.appendChild(td3);
-             }
-             var tbody=document.querySelector('tbody');
-             tbody.appendChild(tr);
+            </tbody>
+        </table>
+    </div>
+    <script src="ife31data.js"></script>
+    <script>
+        /*--------------取出华东华南华北的地区数据-------------*/
+        let eastChinaObj = [];
+        function eastChina(obj) {
+            for (let i in obj) {
+                if (obj[i].region == '华东') {
+                    eastChinaObj.push(obj[i]);
+                }
+            }
+        }
+        let southChinaObj = [];
+        function southChina(obj) {
+            for (let i in obj) {
+                if (obj[i].region == '华南') {
+                    southChinaObj.push(obj[i]);
+                }
+            }
+        }
+        let northChinaObj = [];
+        function northChina(obj) {
+            for (let i in obj) {
+                if (obj[i].region == '华北') {
+                    northChinaObj.push(obj[i]);
+                }
+            }
+            northChinaObj.product;
+        }
+        /**-------------------取出产品的分类数据--------------------**/
+        let phoneObj = [];
+        function phone(obj) {
+            for (let i in obj) {
+                if (obj[i].product == '手机') {
+                    phoneObj.push(obj[i]);
+                }
+            }
+        }
+
+        let laptopObj = [];
+        function laptop(obj) {
+            for (let i in obj) {
+                if (obj[i].product == '笔记本') {
+                    laptopObj.push(obj[i]);
+                }
+            }
+
+        }
+        let smartspeakerObj = [];
+        function smartspeaker(obj) {
+            for (let i in obj) {
+                if (obj[i].product == '智能音箱') {
+                    smartspeakerObj.push(obj[i]);
+                }
+            }
+        }
+        //对表格开始渲染  渲染构造器
+        function renderingTable(Obj) {
+
+
+            var tbody = document.querySelector('tbody');
+            if (tbody.childNodes.length != 1) {
+                removeAlreadyTable();
+            }
+
+            for (let i = 0; i < Obj.length; i++) {
+                var tr = document.createElement('tr');
+                var td = document.createElement('td');
+                var textnode = document.createTextNode(Obj[i].product);
+                td.appendChild(textnode);
+                tr.appendChild(td);
+                var td2 = document.createElement('td');
+                var textnode2 = document.createTextNode(Obj[i].region);
+                td2.appendChild(textnode2);
+                tr.appendChild(td2);
+                for (let j = 0; j < Obj[i].sale.length; j++) {
+                    var td3 = document.createElement('td');
+                    var textnode3 = document.createTextNode(
+                        Obj[i].sale[j]);
+                    td3.appendChild(textnode3);
+                    tr.appendChild(td3);
+                }
+                var tbody = document.querySelector('tbody');
+                tbody.appendChild(tr);
 
             }
 
         }
         //事件触发开始
-        document.getElementById('region-select').addEventListener('change',function(){
-            var rs=document.getElementById('region-select');
-            if(rs.value=='eastChina'){
+        var selectDiv = document.getElementById('select');
+
+        selectDiv.addEventListener('change', function (ev) {
+            var ev = ev || window.event;
+            var target = ev.target || ev.srcElement;
+            if (target.nodeName.toLowerCase() == 'select') {    //事件委托到<SELECT>
                 
-                renderingTable(eastChinaObj);
-            }
-            if(rs.value=='southChina'){
-        
-                renderingTable(southChinaObj);
-            }
-            if(rs.value=='northChina'){
-    
-                renderingTable(northChinaObj);
+                var rs = document.getElementById('region-select');
+                var ps = document.getElementById('product-select');
+                if (rs.value == 'eastChina') {
+                    renderingTable(eastChinaObj);
+                    mixedArr(eastChinaObj);
+                 
+                }
+                if (rs.value == 'southChina') {
+                    renderingTable(southChinaObj);
+                    mixedArr(southChinaObj);
+
+
+                }
+                if (rs.value == 'northChina') {
+                    renderingTable(northChinaObj);
+                    mixedArr(northChinaObj);
+
+                }
             }
         })
-        //预载数据
-        function perloadData(){
-        eastChina(sourceData);
-        northChina(sourceData);
-        southChina(sourceData);
+        //混合方法 混淆数据 筛选分类
+        function mixedArr(objArr){
+            var rs = document.getElementById('region-select');
+                var ps = document.getElementById('product-select');
+            if (ps.value == 'phone') {
+                        let mixed = [];
+
+                        for (let i in objArr) {
+                            if (objArr[i].product == '手机') {
+                                mixed.push(objArr[i]);
+                            }
+                        }
+                        renderingTable(mixed);
+                    }
+                    if (ps.value == 'laptop') {
+                        let mixed = [];
+
+                        for (let i in objArr) {
+                            if (objArr[i].product == '笔记本') {
+                                mixed.push(objArr[i]);
+                            }
+                        }
+                        renderingTable(mixed);
+                    }
+                    if (ps.value == 'smartspeaker') {
+                        let mixed = [];
+
+                        for (let i in objArr) {
+                            if (objArr[i].product == '智能音箱') {
+                                mixed.push(objArr[i]);
+                            }
+                        }
+                        renderingTable(mixed);
+                    }
         }
-        window.onload=perloadData;
-       
+        //预载数据
+        function perloadData() {
+            eastChina(sourceData);  
+            northChina(sourceData);
+            southChina(sourceData);
+            phone(sourceData);
+            laptop(sourceData);
+            smartspeaker(sourceData);
+        }
+        window.onload = perloadData;
+
         //to be fixed on 1025
         //repeat renderingTable when click once create once
         //ALL FIXED DONE ON 1026
@@ -125,14 +212,17 @@
 
 
         //移除已存在的表格 更新新的表格
-        function removeAlreadyTable(){
-            var tbody=document.querySelector('tbody');
-            while(tbody.firstChild){
+        function removeAlreadyTable() {
+            var tbody = document.querySelector('tbody');
+            while (tbody.firstChild) {
                 tbody.removeChild(tbody.firstChild);
             }
         }
 
-        </script>
-   
-    </body>
+
+    //@TTT.BZ proudly produced on 20191027
+    </script>
+
+</body>
+
 </html>
