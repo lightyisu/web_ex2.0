@@ -3,21 +3,20 @@
 
 <head>
     <meta charset="utf-8">
+    <style>
+        div {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
+<!--checkbox容器-->
     <div id="select">
-        <select id="region-select">
-            <option value="eastChina">华东</option>
-            <option value="southChina">华南</option>
-            <option value="northChina">华北</option>
-        </select>
-        <select id="product-select">
-            <option value="phone">手机</option>
-            <option value="laptop">笔记本</option>
-            <option value="smartspeaker">智能音箱</option>
-        </select>
+        <div id="region-radio-wrapper"></div>
+        <div id="product-radio-wrapper"></div>
     </div>
+
     <br />
     <div id="table-wrapper">
         <table border="1">
@@ -138,13 +137,13 @@
             var ev = ev || window.event;
             var target = ev.target || ev.srcElement;
             if (target.nodeName.toLowerCase() == 'select') {    //事件委托到<SELECT>
-                
+
                 var rs = document.getElementById('region-select');
                 var ps = document.getElementById('product-select');
                 if (rs.value == 'eastChina') {
                     renderingTable(eastChinaObj);
                     mixedArr(eastChinaObj);
-                 
+
                 }
                 if (rs.value == 'southChina') {
                     renderingTable(southChinaObj);
@@ -160,43 +159,43 @@
             }
         })
         //混合方法 混淆数据 筛选分类
-        function mixedArr(objArr){
+        function mixedArr(objArr) {
             var rs = document.getElementById('region-select');
-                var ps = document.getElementById('product-select');
+            var ps = document.getElementById('product-select');
             if (ps.value == 'phone') {
-                        let mixed = [];
+                let mixed = [];
 
-                        for (let i in objArr) {
-                            if (objArr[i].product == '手机') {
-                                mixed.push(objArr[i]);
-                            }
-                        }
-                        renderingTable(mixed);
+                for (let i in objArr) {
+                    if (objArr[i].product == '手机') {
+                        mixed.push(objArr[i]);
                     }
-                    if (ps.value == 'laptop') {
-                        let mixed = [];
+                }
+                renderingTable(mixed);
+            }
+            if (ps.value == 'laptop') {
+                let mixed = [];
 
-                        for (let i in objArr) {
-                            if (objArr[i].product == '笔记本') {
-                                mixed.push(objArr[i]);
-                            }
-                        }
-                        renderingTable(mixed);
+                for (let i in objArr) {
+                    if (objArr[i].product == '笔记本') {
+                        mixed.push(objArr[i]);
                     }
-                    if (ps.value == 'smartspeaker') {
-                        let mixed = [];
+                }
+                renderingTable(mixed);
+            }
+            if (ps.value == 'smartspeaker') {
+                let mixed = [];
 
-                        for (let i in objArr) {
-                            if (objArr[i].product == '智能音箱') {
-                                mixed.push(objArr[i]);
-                            }
-                        }
-                        renderingTable(mixed);
+                for (let i in objArr) {
+                    if (objArr[i].product == '智能音箱') {
+                        mixed.push(objArr[i]);
                     }
+                }
+                renderingTable(mixed);
+            }
         }
         //预载数据
         function perloadData() {
-            eastChina(sourceData);  
+            eastChina(sourceData);
             northChina(sourceData);
             southChina(sourceData);
             phone(sourceData);
@@ -218,6 +217,102 @@
                 tbody.removeChild(tbody.firstChild);
             }
         }
+        //复选框 渲染构造
+        function createCheckBox(wrapper,checkboxObj){
+            var p=document.createElement('p');
+            var input=document.createElement('input');
+            var textnode=document.createTextNode('全选');
+            input.setAttribute('type','checkbox');
+            input.setAttribute('checkbox-type','all');
+            p.appendChild(input)
+            p.appendChild(textnode);
+            wrapper.appendChild(p);
+
+           
+            for(let i in checkboxObj){
+                var p2=document.createElement('p');
+                var textnode2=document.createTextNode(checkboxObj[i].text);
+                var inputChild=document.createElement('input');
+                inputChild.setAttribute('type','checkbox');
+                inputChild.setAttribute('checkbox-type','child');
+                p2.appendChild(inputChild);
+                p2.appendChild(textnode2);
+                wrapper.appendChild(p2);
+
+            }
+         
+            //事件委托 复选框逻辑实现
+        
+            wrapper.onclick=function(ev){
+                var ev=ev||window.event;
+                var target=ev.target||ev.srcElement;
+                if(target.nodeName.toLocaleLowerCase()=='input'){
+                  if(target.getAttribute('checkbox-type')=='all'){          //全选绑定事件
+                     for(let j=1;j<checkboxObj.length+1;j++){
+                         wrapper.childNodes[j].childNodes[0].checked=true;
+                     }
+                      }
+                   if(target.getAttribute('checkbox-type')=='child'){       //为单个Checkbox绑定事件
+                  /**-------------------------检查该选项是否为唯一勾选选项-------------------**/
+                   var count=0;            
+                    for(let m=1;m<=checkboxObj.length;m++){
+                        if(wrapper.childNodes[m].childNodes[0].checked==true){
+                            count++;
+                        }
+                     }
+                     if(count==0){
+                         target.checked=true;
+                     }
+                /**-------------------------------检查完成！成功运行----------------------**/
+                /**------------------------------检查是否满足全选要求---------------------**/
+
+                     if(count==3){
+                         wrapper.childNodes[0].childNodes[0].checked=true;
+                     }
+                    }
+                /**-------------------------------检查完成！成功运行-------------**/
+                    if(count<3){
+                        wrapper.childNodes[0].childNodes[0].checked=false;
+                    }
+                      
+                    
+                    }
+                }
+            }
+
+
+
+        
+        var regionWrapper=document.getElementById('region-radio-wrapper');
+        var productWrapper=document.getElementById('product-radio-wrapper');
+        createCheckBox(regionWrapper,[{
+            value:1,
+            text:'华东'
+        },
+        {
+            value:2,
+            text:'华南'
+        },
+        {
+            value:3,
+            text:'华北'
+        }]);
+
+        createCheckBox(productWrapper,[{
+            value:1,
+            text:'手机'
+        },{
+            value:2,
+            text:'笔记本'
+
+        },
+    {
+        value:3,
+        text:'智能音箱'
+    }])
+/**----------------------------------复选框构造结束-------------------------------**/
+
+
 
 
     //@TTT.BZ proudly produced on 20191027
