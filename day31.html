@@ -130,7 +130,7 @@
             }
 
         }
-        //事件触发开始
+        //事件触发开始 主事件入口
         var selectDiv = document.getElementById('select');
 
         selectDiv.addEventListener('change', function (ev) {
@@ -195,12 +195,12 @@
         }
         //预载数据
         function perloadData() {
-            eastChina(sourceData);
-            northChina(sourceData);
-            southChina(sourceData);
-            phone(sourceData);
-            laptop(sourceData);
-            smartspeaker(sourceData);
+            eastChina(sourceData);  //华东
+            northChina(sourceData); //华北
+            southChina(sourceData);  //华南
+            phone(sourceData);     //手机
+            laptop(sourceData);    //笔记本
+            smartspeaker(sourceData); //智能音箱
         }
         window.onload = perloadData;
 
@@ -275,7 +275,7 @@
                         wrapper.childNodes[0].childNodes[0].checked=false;
                     }
                       
-                    
+                    getData();
                     }
                 }
             }
@@ -312,7 +312,54 @@
     }])
 /**----------------------------------复选框构造结束-------------------------------**/
 
+        function getData(){
+            let list=[];
+            let regionWrapper=document.getElementById('region-radio-wrapper');
+            if(regionWrapper.childNodes[1].childNodes[0].checked==true){
+                for(let i in eastChinaObj){
+                    list.push(eastChinaObj[i]);
+                    for(let i=0;i<list.length;i++){
+                        if(list[i].region!='华东'){                     //TO BE FINSHED ON 1102
 
+                        }
+                    }
+                }
+            }
+            if(regionWrapper.childNodes[2].childNodes[0].checked==true){
+                for(let i in southChinaObj){
+                    list.push(southChinaObj[i]);
+                }
+            }
+            if(regionWrapper.childNodes[3].childNodes[0].checked==true){
+                for(let i in northChinaObj){
+                    list.push(northChinaObj[i]);
+                }
+            }
+            let productWrapper=document.getElementById('product-radio-wrapper');
+            if(productWrapper.childNodes[1].childNodes[0].checked==true){
+                for(let i in phoneObj){
+                    list.push(phoneObj[i]);
+                }
+            }
+            if(productWrapper.childNodes[2].childNodes[0].checked==true){
+                for(let i in laptopObj){
+                    list.push(laptopObj[i])
+                }
+            }
+            if(productWrapper.childNodes[3].childNodes[0].checked==true){
+                for(let i in smartspeakerObj){
+                    list.push(smartspeakerObj[i]);
+                }
+            }
+            var realList=[];
+            for(let i=0;i<list.length;i++){
+                if(realList.indexOf(list[i])==-1){
+                    realList.push(list[i]);
+                }
+            }
+         console.log(realList);
+
+        }
 
 
     //@TTT.BZ proudly produced on 20191027
