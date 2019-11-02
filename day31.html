@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<!--checkbox容器-->
+    <!--checkbox容器-->
     <div id="select">
         <div id="region-radio-wrapper"></div>
         <div id="product-radio-wrapper"></div>
@@ -218,150 +218,216 @@
             }
         }
         //复选框 渲染构造
-        function createCheckBox(wrapper,checkboxObj){
-            var p=document.createElement('p');
-            var input=document.createElement('input');
-            var textnode=document.createTextNode('全选');
-            input.setAttribute('type','checkbox');
-            input.setAttribute('checkbox-type','all');
+        function createCheckBox(wrapper, checkboxObj) {
+            var p = document.createElement('p');
+            var input = document.createElement('input');
+            var textnode = document.createTextNode('全选');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('checkbox-type', 'all');
             p.appendChild(input)
             p.appendChild(textnode);
             wrapper.appendChild(p);
 
-           
-            for(let i in checkboxObj){
-                var p2=document.createElement('p');
-                var textnode2=document.createTextNode(checkboxObj[i].text);
-                var inputChild=document.createElement('input');
-                inputChild.setAttribute('type','checkbox');
-                inputChild.setAttribute('checkbox-type','child');
+
+            for (let i in checkboxObj) {
+                var p2 = document.createElement('p');
+                var textnode2 = document.createTextNode(checkboxObj[i].text);
+                var inputChild = document.createElement('input');
+                inputChild.setAttribute('type', 'checkbox');
+                inputChild.setAttribute('checkbox-type', 'child');
                 p2.appendChild(inputChild);
                 p2.appendChild(textnode2);
                 wrapper.appendChild(p2);
 
             }
-         
+
             //事件委托 复选框逻辑实现
-        
-            wrapper.onclick=function(ev){
-                var ev=ev||window.event;
-                var target=ev.target||ev.srcElement;
-                if(target.nodeName.toLocaleLowerCase()=='input'){
-                  if(target.getAttribute('checkbox-type')=='all'){          //全选绑定事件
-                     for(let j=1;j<checkboxObj.length+1;j++){
-                         wrapper.childNodes[j].childNodes[0].checked=true;
-                     }
-                      }
-                   if(target.getAttribute('checkbox-type')=='child'){       //为单个Checkbox绑定事件
-                  /**-------------------------检查该选项是否为唯一勾选选项-------------------**/
-                   var count=0;            
-                    for(let m=1;m<=checkboxObj.length;m++){
-                        if(wrapper.childNodes[m].childNodes[0].checked==true){
-                            count++;
-                        }
-                     }
-                     if(count==0){
-                         target.checked=true;
-                     }
-                /**-------------------------------检查完成！成功运行----------------------**/
-                /**------------------------------检查是否满足全选要求---------------------**/
 
-                     if(count==3){
-                         wrapper.childNodes[0].childNodes[0].checked=true;
-                     }
+            wrapper.onclick = function (ev) {
+                var ev = ev || window.event;
+                var target = ev.target || ev.srcElement;
+                if (target.nodeName.toLocaleLowerCase() == 'input') {
+                    if (target.getAttribute('checkbox-type') == 'all') {          //全选绑定事件
+                        for (let j = 1; j < checkboxObj.length + 1; j++) {
+                            wrapper.childNodes[j].childNodes[0].checked = true;
+                        }
                     }
-                /**-------------------------------检查完成！成功运行-------------**/
-                    if(count<3){
-                        wrapper.childNodes[0].childNodes[0].checked=false;
+                    if (target.getAttribute('checkbox-type') == 'child') {       //为单个Checkbox绑定事件
+                        /**-------------------------检查该选项是否为唯一勾选选项-------------------**/
+                        var count = 0;
+                        for (let m = 1; m <= checkboxObj.length; m++) {
+                            if (wrapper.childNodes[m].childNodes[0].checked == true) {
+                                count++;
+                            }
+                        }
+                        if (count == 0) {
+                            target.checked = true;
+                        }
+                        /**-------------------------------检查完成！成功运行----------------------**/
+                        /**------------------------------检查是否满足全选要求---------------------**/
+
+                        if (count == 3) {
+                            wrapper.childNodes[0].childNodes[0].checked = true;
+                        }
                     }
-                      
+                    /**-------------------------------检查完成！成功运行-------------**/
+                    if (count < 3) {
+                        wrapper.childNodes[0].childNodes[0].checked = false;
+                    }
+                    push2();
                     getData();
-                    }
                 }
             }
-
-
-
-        
-        var regionWrapper=document.getElementById('region-radio-wrapper');
-        var productWrapper=document.getElementById('product-radio-wrapper');
-        createCheckBox(regionWrapper,[{
-            value:1,
-            text:'华东'
-        },
-        {
-            value:2,
-            text:'华南'
-        },
-        {
-            value:3,
-            text:'华北'
-        }]);
-
-        createCheckBox(productWrapper,[{
-            value:1,
-            text:'手机'
-        },{
-            value:2,
-            text:'笔记本'
-
-        },
-    {
-        value:3,
-        text:'智能音箱'
-    }])
-/**----------------------------------复选框构造结束-------------------------------**/
-
-        function getData(){
-            let list=[];
-            let regionWrapper=document.getElementById('region-radio-wrapper');
-            if(regionWrapper.childNodes[1].childNodes[0].checked==true){
-                for(let i in eastChinaObj){
-                    list.push(eastChinaObj[i]);
-                    for(let i=0;i<list.length;i++){
-                        if(list[i].region!='华东'){                     //TO BE FINSHED ON 1102
-
-                        }
-                    }
-                }
-            }
-            if(regionWrapper.childNodes[2].childNodes[0].checked==true){
-                for(let i in southChinaObj){
-                    list.push(southChinaObj[i]);
-                }
-            }
-            if(regionWrapper.childNodes[3].childNodes[0].checked==true){
-                for(let i in northChinaObj){
-                    list.push(northChinaObj[i]);
-                }
-            }
-            let productWrapper=document.getElementById('product-radio-wrapper');
-            if(productWrapper.childNodes[1].childNodes[0].checked==true){
-                for(let i in phoneObj){
-                    list.push(phoneObj[i]);
-                }
-            }
-            if(productWrapper.childNodes[2].childNodes[0].checked==true){
-                for(let i in laptopObj){
-                    list.push(laptopObj[i])
-                }
-            }
-            if(productWrapper.childNodes[3].childNodes[0].checked==true){
-                for(let i in smartspeakerObj){
-                    list.push(smartspeakerObj[i]);
-                }
-            }
-            var realList=[];
-            for(let i=0;i<list.length;i++){
-                if(realList.indexOf(list[i])==-1){
-                    realList.push(list[i]);
-                }
-            }
-         console.log(realList);
-
         }
 
 
+
+
+        var regionWrapper = document.getElementById('region-radio-wrapper');
+        var productWrapper = document.getElementById('product-radio-wrapper');
+        createCheckBox(regionWrapper, [{
+            value: 1,
+            text: '华东'
+        },
+        {
+            value: 2,
+            text: '华南'
+        },
+        {
+            value: 3,
+            text: '华北'
+        }]);
+
+        createCheckBox(productWrapper, [{
+            value: 1,
+            text: '手机'
+        }, {
+            value: 2,
+            text: '笔记本'
+
+        },
+        {
+            value: 3,
+            text: '智能音箱'
+        }])
+        /**----------------------------------复选框构造结束-------------------------------**/
+        var list = [];
+
+        function getData() {
+
+
+            let regionWrapper = document.getElementById('region-radio-wrapper');
+            if (regionWrapper.childNodes[1].childNodes[0].checked == true) {
+        
+                for (let m = 0; m < list.length; m++) {
+                    if (list[m].region != '华东') {
+                        list.splice(m, 1);
+                        m--;
+                    }
+                }
+            
+
+            }
+            if (regionWrapper.childNodes[2].childNodes[0].checked == true) {
+                for (let m = 0; m < list.length; m++) {
+                    if (list[m].region != '华南') {
+                        list.splice(m, 1);
+                        m--;
+                    }
+                }
+             
+            }
+            if (regionWrapper.childNodes[3].childNodes[0].checked == true) {
+                for (let m = 0; m < list.length; m++) {
+                    if (list[m].region != '华北') {
+                        list.splice(m, 1);
+                        m--;
+                    }
+                }
+            
+            }
+            let productWrapper = document.getElementById('product-radio-wrapper');
+
+            if (productWrapper.childNodes[1].childNodes[0].checked == true) {
+            for (let m = 0; m < list.length; m++) {
+                if (list[m].product != '手机') {
+                    list.splice(m, 1);
+                    m--;
+                }
+            }
+         
+        }
+        if (productWrapper.childNodes[2].childNodes[0].checked == true) {
+            for (let m = 0; m < list.length; m++) {
+                    if (list[m].region != '笔记本') {
+                        list.splice(m, 1);
+                        m--;
+                    }
+                }
+        
+        }
+        if (productWrapper.childNodes[3].childNodes[0].checked == true) {
+            for (let m = 0; m < list.length; m++) {
+                    if (list[m].region != '智能音箱') {
+                        list.splice(m, 1);
+                        m--;
+                    }
+                }
+          
+        }
+   
+
+        var realList = [];
+        for (let i = 0; i < list.length; i++) {
+            if (realList.indexOf(list[i]) == -1) {
+                realList.push(list[i]);
+            }
+        }
+        renderingTable(realList);
+
+        }
+
+        //push与检查分离
+        function push2() {
+            let regionWrapper = document.getElementById('region-radio-wrapper');
+            if (regionWrapper.childNodes[1].childNodes[0].checked == true) {
+                for (let i in eastChinaObj) {
+                    list.push(eastChinaObj[i]);
+                }
+            }
+            if (regionWrapper.childNodes[2].childNodes[0].checked == true) {
+                for (let i in southChinaObj) {
+                    list.push(southChinaObj[i]);
+                }
+            }
+            if (regionWrapper.childNodes[3].childNodes[0].checked == true) {
+                for (let i in northChinaObj) {
+                    list.push(northChinaObj[i]);
+                }
+            }
+            let productWrapper = document.getElementById('product-radio-wrapper');
+            if (productWrapper.childNodes[1].childNodes[0].checked == true) {
+
+
+                for (let i in phoneObj) {
+                    list.push(phoneObj[i]);                                                     //重复填充数据bug
+                }
+            }
+            if (productWrapper.childNodes[2].childNodes[0].checked == true) {
+                for (let i in laptopObj) {
+                    list.push(laptopObj[i])
+                }
+            }
+            if (productWrapper.childNodes[3].childNodes[0].checked == true) {
+                console.log(smartspeakerObj);
+                for (let i in smartspeakerObj) {
+                    
+                    list.push(smartspeakerObj[i]);
+                }
+                console.log(list);
+            }
+
+        }
     //@TTT.BZ proudly produced on 20191027
     </script>
 

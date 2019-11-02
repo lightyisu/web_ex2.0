@@ -4,11 +4,12 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <p id="1" oop='9'></p>
+        <input type="checkbox">oop
     </body>
     <script>
-        var p=document.querySelector('p');
-        alert(p.getAttribute('oop'));
+        document.querySelector('input').onclick=function(){
+            alert(this.checked);
+        }
     </script>
     </body>
 </html>
