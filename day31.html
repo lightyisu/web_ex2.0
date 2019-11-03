@@ -46,7 +46,7 @@
     <script src="ife31data.js"></script>
     <script>
         /*--------------取出华东华南华北的地区数据-------------*/
-        let eastChinaObj = [];
+        var eastChinaObj = [];
         function eastChina(obj) {
             for (let i in obj) {
                 if (obj[i].region == '华东') {
@@ -54,7 +54,7 @@
                 }
             }
         }
-        let southChinaObj = [];
+        var southChinaObj = [];
         function southChina(obj) {
             for (let i in obj) {
                 if (obj[i].region == '华南') {
@@ -62,7 +62,7 @@
                 }
             }
         }
-        let northChinaObj = [];
+        var northChinaObj = [];
         function northChina(obj) {
             for (let i in obj) {
                 if (obj[i].region == '华北') {
@@ -72,7 +72,7 @@
             northChinaObj.product;
         }
         /**-------------------取出产品的分类数据--------------------**/
-        let phoneObj = [];
+        var phoneObj = [];
         function phone(obj) {
             for (let i in obj) {
                 if (obj[i].product == '手机') {
@@ -81,7 +81,7 @@
             }
         }
 
-        let laptopObj = [];
+        var laptopObj = [];
         function laptop(obj) {
             for (let i in obj) {
                 if (obj[i].product == '笔记本') {
@@ -90,7 +90,7 @@
             }
 
         }
-        let smartspeakerObj = [];
+        var smartspeakerObj = [];
         function smartspeaker(obj) {
             for (let i in obj) {
                 if (obj[i].product == '智能音箱') {
@@ -130,79 +130,17 @@
             }
 
         }
-        //事件触发开始 主事件入口
-        var selectDiv = document.getElementById('select');
-
-        selectDiv.addEventListener('change', function (ev) {
-            var ev = ev || window.event;
-            var target = ev.target || ev.srcElement;
-            if (target.nodeName.toLowerCase() == 'select') {    //事件委托到<SELECT>
-
-                var rs = document.getElementById('region-select');
-                var ps = document.getElementById('product-select');
-                if (rs.value == 'eastChina') {
-                    renderingTable(eastChinaObj);
-                    mixedArr(eastChinaObj);
-
-                }
-                if (rs.value == 'southChina') {
-                    renderingTable(southChinaObj);
-                    mixedArr(southChinaObj);
 
 
-                }
-                if (rs.value == 'northChina') {
-                    renderingTable(northChinaObj);
-                    mixedArr(northChinaObj);
-
-                }
-            }
-        })
-        //混合方法 混淆数据 筛选分类
-        function mixedArr(objArr) {
-            var rs = document.getElementById('region-select');
-            var ps = document.getElementById('product-select');
-            if (ps.value == 'phone') {
-                let mixed = [];
-
-                for (let i in objArr) {
-                    if (objArr[i].product == '手机') {
-                        mixed.push(objArr[i]);
-                    }
-                }
-                renderingTable(mixed);
-            }
-            if (ps.value == 'laptop') {
-                let mixed = [];
-
-                for (let i in objArr) {
-                    if (objArr[i].product == '笔记本') {
-                        mixed.push(objArr[i]);
-                    }
-                }
-                renderingTable(mixed);
-            }
-            if (ps.value == 'smartspeaker') {
-                let mixed = [];
-
-                for (let i in objArr) {
-                    if (objArr[i].product == '智能音箱') {
-                        mixed.push(objArr[i]);
-                    }
-                }
-                renderingTable(mixed);
-            }
+        window.onload = preloadData;
+        function preloadData() {
+            eastChina(sourceData);
+            southChina(sourceData);
+            northChina(sourceData);
+            laptop(sourceData);
+            phone(sourceData);
+            smartspeaker(sourceData);
         }
-        //预载数据
-        function perloadData() {
-            eastChina(sourceData);  //华东
-            northChina(sourceData); //华北
-            southChina(sourceData);  //华南
-            phone(sourceData);     //手机
-            laptop(sourceData);    //笔记本
-            smartspeaker(sourceData); //智能音箱
-        }
-        window.onload = perloadData;
 
         //to be fixed on 1025
         //repeat renderingTable when click once create once
@@ -275,7 +213,8 @@
                         wrapper.childNodes[0].childNodes[0].checked = false;
                     }
                     push2();
-                    getData();
+
+
                 }
             }
         }
@@ -311,121 +250,71 @@
             text: '智能音箱'
         }])
         /**----------------------------------复选框构造结束-------------------------------**/
+
+
+
+        //push与检查分离 push data区
         var list = [];
-
-        function getData() {
-
-
-            let regionWrapper = document.getElementById('region-radio-wrapper');
-            if (regionWrapper.childNodes[1].childNodes[0].checked == true) {
-        
-                for (let m = 0; m < list.length; m++) {
-                    if (list[m].region != '华东') {
-                        list.splice(m, 1);
-                        m--;
-                    }
-                }
-            
-
-            }
-            if (regionWrapper.childNodes[2].childNodes[0].checked == true) {
-                for (let m = 0; m < list.length; m++) {
-                    if (list[m].region != '华南') {
-                        list.splice(m, 1);
-                        m--;
-                    }
-                }
-             
-            }
-            if (regionWrapper.childNodes[3].childNodes[0].checked == true) {
-                for (let m = 0; m < list.length; m++) {
-                    if (list[m].region != '华北') {
-                        list.splice(m, 1);
-                        m--;
-                    }
-                }
-            
-            }
-            let productWrapper = document.getElementById('product-radio-wrapper');
-
-            if (productWrapper.childNodes[1].childNodes[0].checked == true) {
-            for (let m = 0; m < list.length; m++) {
-                if (list[m].product != '手机') {
-                    list.splice(m, 1);
-                    m--;
-                }
-            }
-         
-        }
-        if (productWrapper.childNodes[2].childNodes[0].checked == true) {
-            for (let m = 0; m < list.length; m++) {
-                    if (list[m].region != '笔记本') {
-                        list.splice(m, 1);
-                        m--;
-                    }
-                }
-        
-        }
-        if (productWrapper.childNodes[3].childNodes[0].checked == true) {
-            for (let m = 0; m < list.length; m++) {
-                    if (list[m].region != '智能音箱') {
-                        list.splice(m, 1);
-                        m--;
-                    }
-                }
-          
-        }
-   
-
-        var realList = [];
-        for (let i = 0; i < list.length; i++) {
-            if (realList.indexOf(list[i]) == -1) {
-                realList.push(list[i]);
-            }
-        }
-        renderingTable(realList);
-
-        }
-
-        //push与检查分离
+        var list2=[];
         function push2() {
             let regionWrapper = document.getElementById('region-radio-wrapper');
             if (regionWrapper.childNodes[1].childNodes[0].checked == true) {
                 for (let i in eastChinaObj) {
                     list.push(eastChinaObj[i]);
                 }
+                push22();
             }
             if (regionWrapper.childNodes[2].childNodes[0].checked == true) {
                 for (let i in southChinaObj) {
                     list.push(southChinaObj[i]);
                 }
+                push22();
             }
             if (regionWrapper.childNodes[3].childNodes[0].checked == true) {
                 for (let i in northChinaObj) {
                     list.push(northChinaObj[i]);
                 }
+                push22();
             }
+        
+            var realList = [];
+            for (let i = 0; i < list2.length; i++) {
+                if (realList.indexOf(list2[i]) == -1) {
+                    realList.push(list2[i]);
+                }
+               
+            }
+            renderingTable(realList);
+
+        }
+        function push22(){
             let productWrapper = document.getElementById('product-radio-wrapper');
             if (productWrapper.childNodes[1].childNodes[0].checked == true) {
-
-
-                for (let i in phoneObj) {
-                    list.push(phoneObj[i]);                                                     //重复填充数据bug
+                for(let i in list){
+                    if(list[i].product=="手机"){
+                        list2.push(list[i]);
+                    }
                 }
+            
+
             }
             if (productWrapper.childNodes[2].childNodes[0].checked == true) {
-                for (let i in laptopObj) {
-                    list.push(laptopObj[i])
+                for(let i in list){
+                    if(list[i].product=="笔记本"){
+                        list2.push(list[i]);
+                    }
                 }
             }
             if (productWrapper.childNodes[3].childNodes[0].checked == true) {
-                console.log(smartspeakerObj);
-                for (let i in smartspeakerObj) {
-                    
-                    list.push(smartspeakerObj[i]);
+
+                for(let i in list){
+                    if(list[i].product=="智能音箱"){
+                        list2.push(list[i]);
+                    }
                 }
-                console.log(list);
+
             }
+        
 
         }
     //@TTT.BZ proudly produced on 20191027
