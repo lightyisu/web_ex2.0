@@ -276,6 +276,33 @@
                 }
                 push22();
             }
+            if(regionWrapper.childNodes[1].childNodes[0].checked==false){
+                for(let i=0;i<list2.length;i++){
+                    if(list2[i].region=='华东'){
+              
+                        list2.splice(i,1);
+                        i--;
+                    }
+                }
+            }
+            if(regionWrapper.childNodes[2].childNodes[0].checked==false){
+                for(let i=0;i<list2.length;i++){
+                    if(list2[i].region=='华南'){
+              
+                        list2.splice(i,1);
+                        i--;
+                    }
+                }
+            }
+            if(regionWrapper.childNodes[3].childNodes[0].checked==false){
+                for(let i=0;i<list2.length;i++){
+                    if(list2[i].region=='华北'){
+              
+                        list2.splice(i,1);
+                        i--;
+                    }
+                }
+            }
         
             var realList = [];
             for (let i = 0; i < list2.length; i++) {
@@ -295,10 +322,10 @@
                     if(list[i].product=="手机"){
                         list2.push(list[i]);
                     }
-                }
-            
+                } 
 
             }
+            
             if (productWrapper.childNodes[2].childNodes[0].checked == true) {
                 for(let i in list){
                     if(list[i].product=="笔记本"){
@@ -315,7 +342,37 @@
                 }
 
             }
-        
+            if (productWrapper.childNodes[1].childNodes[0].checked == false){
+                
+                for(let i=0;i<list2.length;i++){
+                    if(list2[i].product=='手机'){
+              
+                        list2.splice(i,1);
+                        i--;
+                    }
+                }
+            }
+            if (productWrapper.childNodes[2].childNodes[0].checked == false){
+                
+                for(let i=0;i<list2.length;i++){
+                    if(list2[i].product=='笔记本'){
+              
+                        list2.splice(i,1);
+                        i--;
+                    }
+                }
+            }
+            
+            if (productWrapper.childNodes[3].childNodes[0].checked == false){
+                
+                for(let i=0;i<list2.length;i++){
+                    if(list2[i].product=='智能音箱'){
+              
+                        list2.splice(i,1);
+                        i--;
+                    }
+                }
+            }
 
         }
     //@TTT.BZ proudly produced on 20191027
