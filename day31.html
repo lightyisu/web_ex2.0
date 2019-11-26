@@ -110,27 +110,7 @@
                 removeAlreadyTable();
             }
 
-            for (let i = 0; i < Obj.length; i++) {
-                var tr = document.createElement('tr');
-                var td = document.createElement('td');
-                var textnode = document.createTextNode(Obj[i].product);
-                td.appendChild(textnode);
-                tr.appendChild(td);
-                var td2 = document.createElement('td');
-                var textnode2 = document.createTextNode(Obj[i].region);
-                td2.appendChild(textnode2);
-                tr.appendChild(td2);
-                for (let j = 0; j < Obj[i].sale.length; j++) {
-                    var td3 = document.createElement('td');
-                    var textnode3 = document.createTextNode(
-                        Obj[i].sale[j]);
-                    td3.appendChild(textnode3);
-                    tr.appendChild(td3);
-                }
-                var tbody = document.querySelector('tbody');
-                tbody.appendChild(tr);
-
-            }
+        
 
         }
 
