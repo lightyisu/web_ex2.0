@@ -53,7 +53,7 @@ window.onload=createInputs();
 
 
 var inputCr=document.querySelectorAll('input');         //inputCr意指input Created
-//收集新数据 封装
+//收集新数据 封装 高还原度式
 /**function collectData(){
     var objArr=[];
     for(let i=0;i<9;i++){           //数组中的9的对象数组
