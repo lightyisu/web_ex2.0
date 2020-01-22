@@ -118,7 +118,7 @@ Customer.prototype.order=function(dish){
     return dish;
 }
 Customer.prototype.enjoyDeal=function(){
-    console.log('Customer:I got It and enjoy it');
+    console.log('Customer:I got It and hope enjoy it');
 }
 
 //菜品类

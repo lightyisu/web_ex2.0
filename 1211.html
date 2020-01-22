@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+<style>
+.wrapper {
+  height: 200px;
+  width: 200px;
+  border: 1px solid red;
+  /* 将圆形动画定位到正中 */
+  position: relative;
+}
+
+.wrapper::before,
+.wrapper::after{
+  content: '';
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  border-radius: 100%;
+  /* 将圆形动画定位到正中 */
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  animation: dada 2s linear infinite;
+}
+
+.wrapper::after {
+  animation-delay: 1s;
+}
+
+@keyframes dada {
+  0% {
+    height: 0px;
+    width: 0px;
+    opacity: 1;
+  }
+  100% {
+    height: 100px;
+    width: 100px;
+    opacity: 0;
+  }
+}
+.loading {
+  display: none;
+  background-color: antiquewhite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-indx: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading.active {
+  display: flex;
+}
+</style>
+
+<body>
+    <div id="siteLoading" class="loading active">
+        <div class="loading-animation"> <div class="wrapper"></div>
+</div>
+</div>
+<p>ok</p>
+
+<script>
+  setTimeout(function(){
+      siteLoading.classList.remove('active')
+    },2000)
+</script>
+</body>
+
+</html>
