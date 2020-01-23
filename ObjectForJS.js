@@ -1,26 +1,26 @@
 //餐厅类
-function Restaurant(cash,seats,staff){
-    this.cash=cash;
-    this.seats=seats;
-    this.staff=staff;
-    this.hire=function(a){
-        console.log(a.name+'  is be hired');
+function Restaurant(cash, seats, staff) {
+    this.cash = cash;
+    this.seats = seats;
+    this.staff = staff;
+    this.hire = function (a) {
+        console.log(a.name + '  is be hired');
         staff.push(a.name);
     }
-    this.fire=function(a){
-        console.log(a.name+'   is be fired');
-        var num=staff.indexOf(a.name);
-        staff.splice(num,1);
+    this.fire = function (a) {
+        console.log(a.name + '   is be fired');
+        var num = staff.indexOf(a.name);
+        staff.splice(num, 1);
     }
 }
 //职员类
-function Employee(ID,name,salary){
-    this.ID=ID;
-    this.name=name;
-    this.salary=salary;
+function Employee(ID, name, salary) {
+    this.ID = ID;
+    this.name = name;
+    this.salary = salary;
 }
 //职员类原型方法
-Employee.prototype.doWork=function(){
+Employee.prototype.doWork = function () {
     console.log('do work at once');
 }
 
@@ -45,25 +45,26 @@ function Waiter(ID,name,salary){
 
 
 //重新设计的服务员类
-var Waiter=function(ID,name,salary){
-    Employee.call(this,ID,name,salary);
+var Waiter = function (ID, name, salary) {
+    Employee.call(this, ID, name, salary);
 };
-Waiter.prototype.serveOrder=function(dish){
-    console.log('Waiter:I got your order and your order is'+' '+dish)
+Waiter.prototype.serveOrder = function (dish) {
+    console.log('Waiter:I got your order and your order is' +' '+ dish)
+    return dish;
 }
-Waiter.prototype.tellChef=function(dish){
-    
-    console.log('Waiter:chef,we need do'+' '+dish);
+Waiter.prototype.tellChef = function (dish) {
+
+    console.log('Waiter:chef,we need do' + ' ' + dish);
 }
-Waiter.prototype.passDish=function(){
+Waiter.prototype.passDish = function () {
     console.log('Waiter:ok,I got the dish,go ahead');
 }
 
-var ProxySingleWaiter=(function(){
+var ProxySingleWaiter = (function () {
     var instance;
-    return function(ID,name,salary){
-        if(!instance){
-            instance=new Waiter(ID,name,salary);
+    return function (ID, name, salary) {
+        if (!instance) {
+            instance = new Waiter(ID, name, salary);
         }
         return instance;
 
@@ -82,22 +83,22 @@ var ProxySingleWaiter=(function(){
 
 
 //重新设计的厨师类(代理型单例模式)
-var Chef=function(ID,name,salary){
-    Employee.call(this,ID,name,salary);
+var Chef = function (ID, name, salary) {
+    Employee.call(this, ID, name, salary);
 };
-Chef.prototype.cook=function(dish){
-    console.log('Chef:Got it I will do'+' '+dish);
+Chef.prototype.cook = function (dish) {
+    console.log('Chef:Got it I will do' + ' ' + dish);
 
 }
-Chef.prototype.passDish=function(){
+Chef.prototype.passDish = function () {
     console.log('Chef:I am done,get it to customer');
 }
 
-var ProxySingleChef=(function(){
+var ProxySingleChef = (function () {
     var instance;
-    return function(ID,name,salary){
-        if(!instance){
-            instance=new Chef(ID,name,salary);
+    return function (ID, name, salary) {
+        if (!instance) {
+            instance = new Chef(ID, name, salary);
         }
         return instance;
     }
@@ -105,57 +106,72 @@ var ProxySingleChef=(function(){
 
 
 //顾客类
-function Customer(){
-    this.goseat=function(){
-    console.log('Customer:I am on the seat');    
+function Customer() {
+    this.goseat = function () {
+        console.log('Customer:I am on the seat');
     }
-    this.eat=function(){
+    this.eat = function () {
         console.log('Enjoy your meal');
     }
 }
-Customer.prototype.order=function(dish){
-    console.log('Customer:I need a '+' '+dish);
-    return dish;
+Customer.prototype.order = function (dish) {
+    var dishes=[];
+    for(var i=0;i<randomOrder(0,dish.length);i++){
+        dishes.push(dish[randomOrder(0,dish.length)]);
+    }
+
+    
+    console.log('Customer:I need a ' + ' ' + dishes);
+    return dishes;
 }
-Customer.prototype.enjoyDeal=function(){
+Customer.prototype.enjoyDeal = function () {
     console.log('Customer:I got It and hope enjoy it');
 }
 
 //菜品类
-function Dishes(name,cost,price){
-    this.name=name ;
-    this.cost=cost;
-    this.price=price;
-}
-
-var menu=['红烧鲫鱼','豆腐','龙虾','鱼','米饭','蛋糕','北京烤鸭','烧鱼头',' 瓜丝儿','拌海蜇','龙须菜'];
-
-function WorkForU(){
-    var customer1=new Customer();
-    customer1.goseat();
-   
-   var menuDishChoose=menu[random(0,menu.length-1)];
-    var dish=customer1.order(menuDishChoose);
-    var waiter=ProxySingleWaiter(001,'sarly',4200)
-    waiter.serveOrder(dish);
-    waiter.tellChef(dish);
-    var chef=ProxySingleChef(002,'jim',5000);
-    chef.cook(dish);
-    chef.passDish();
-    waiter.passDish();
-    customer1.enjoyDeal();
-
-}
-function random(min,max) {
-    return Math.floor(Math.random()*(max-min)) + min;
-  }
-var customerNum=7;
-for(let i=0;i<customerNum;i++){
-    WorkForU();
+function Dishes(name,price,time) {
+    this.name = name;
+        this.price = price;
+        this.time=time;
 }
 
 
+//为每一道菜创建对象
+var D1=new Dishes('红烧鲫鱼',100,1);
+var D2=new Dishes('豆腐',100,3);
+var D3=new Dishes('龙虾',200,4);
+var D4=new Dishes('鱼',300,1);
+var D5=new Dishes('米饭',200,2);
+var D6=new Dishes('蛋糕',120,3);
+var D7=new Dishes('北京烤鸭',90,2);
+var D8=new Dishes('拌海蜇',70,1);
 
+
+
+var menu=[D1.name,D2.name,D3.name,D4.name,D5.name,D6.name,D7.name,D8.name];
+
+
+//随机点餐方法                              
+function randomOrder(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+//顾客队列
+var customerArr = ['C1', 'C2', 'C3', 'C4', 'C5'];
+
+
+var P1=new Promise(function(resolve,reject){
+    var customer=new Customer();
+    customer.goseat();
+
+    setTimeout(resolve,3000,customer.order(menu));
+
+})
+
+P1.then((value)=>{
+    var Waiter=new ProxySingleWaiter(001,'melody',1000);
+    Waiter.serveOrder(value);
+    Waiter.tellChef(value);
+})
 
 
 
