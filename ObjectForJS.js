@@ -49,15 +49,15 @@ var Waiter = function (ID, name, salary) {
     Employee.call(this, ID, name, salary);
 };
 Waiter.prototype.serveOrder = function (dish) {
-    console.log('Waiter:I got your order and your order is' +' '+ dish)
+    console.log('服务员:好的我拿到了你要的菜单了哦~你的菜单是' + ' ' + dish)
     return dish;
 }
 Waiter.prototype.tellChef = function (dish) {
 
-    console.log('Waiter:chef,we need do' + ' ' + dish);
+    console.log('服务员：厨师快去做这些' + ' ' + dish + '趴');
 }
-Waiter.prototype.passDish = function () {
-    console.log('Waiter:ok,I got the dish,go ahead');
+Waiter.prototype.passDish = function (dish) {
+    console.log('服务员：来了，我来上' + dish, '大家吃吧');
 }
 
 var ProxySingleWaiter = (function () {
@@ -87,11 +87,11 @@ var Chef = function (ID, name, salary) {
     Employee.call(this, ID, name, salary);
 };
 Chef.prototype.cook = function (dish) {
-    console.log('Chef:Got it I will do' + ' ' + dish);
+    console.log('厨师：好的我要开始做' + ' ' + dish);
 
 }
-Chef.prototype.passDish = function () {
-    console.log('Chef:I am done,get it to customer');
+Chef.prototype.passDish = function (dish) {
+    console.log('厨师：我做完了' + dish + ',过来传菜~ ');
 }
 
 var ProxySingleChef = (function () {
@@ -108,47 +108,57 @@ var ProxySingleChef = (function () {
 //顾客类
 function Customer() {
     this.goseat = function () {
-        console.log('Customer:I am on the seat');
+        console.log('顾客：我来了，让我想想我要吃点啥');
     }
     this.eat = function () {
         console.log('Enjoy your meal');
     }
 }
 Customer.prototype.order = function (dish) {
-    var dishes=[];
-    for(var i=0;i<randomOrder(0,dish.length);i++){
-        dishes.push(dish[randomOrder(0,dish.length)]);
+    var dishes1 = [];
+    for (var i = 0; i < randomOrder(1, dish.length); i++) {
+        dishes1.push(dish[randomOrder(0, dish.length)].name);
+    }
+    var dishes = [];
+    for (let j = 0; j < dishes1.length; j++) {
+
+        if (dishes.indexOf(dishes1[j]) == -1) {
+            dishes.push(dishes1[j]);
+        }
+
     }
 
-    
-    console.log('Customer:I need a ' + ' ' + dishes);
+
+    console.log('顾客：我需要 ' + ' ' + dishes);
     return dishes;
 }
-Customer.prototype.enjoyDeal = function () {
-    console.log('Customer:I got It and hope enjoy it');
+Customer.prototype.enjoyDeal = function (dish) {
+    console.log('顾客：我已经吃完了' + dish + '味道还是可以的~');
 }
-
+Customer.prototype.pay = function () {
+    console.log('顾客：啊哈我~都吃完了，用支付宝支付吧');
+}
 //菜品类
-function Dishes(name,price,time) {
+function Dishes(name, price, time) {
     this.name = name;
-        this.price = price;
-        this.time=time;
+    this.price = price;
+    this.time = time;
 }
 
 
 //为每一道菜创建对象
-var D1=new Dishes('红烧鲫鱼',100,1);
-var D2=new Dishes('豆腐',100,3);
-var D3=new Dishes('龙虾',200,4);
-var D4=new Dishes('鱼',300,1);
-var D5=new Dishes('米饭',200,2);
-var D6=new Dishes('蛋糕',120,3);
-var D7=new Dishes('北京烤鸭',90,2);
-var D8=new Dishes('拌海蜇',70,1);
+var D1 = new Dishes('红烧鲫鱼', 100, 8);
+var D2 = new Dishes('豆腐', 100, 3);
+var D3 = new Dishes('龙虾', 200, 10);
+var D4 = new Dishes('鱼', 300, 5);
+var D5 = new Dishes('米饭', 200, 2);
+var D6 = new Dishes('蛋糕', 120, 3);
+var D7 = new Dishes('北京烤鸭', 90, 10);
+var D8 = new Dishes('拌海蜇', 70, 1);
 
 
 
-var menu=[D1.name,D2.name,D3.name,D4.name,D5.name,D6.name,D7.name,D8.name];
+var menu = [D1, D2, D3, D4, D5, D6, D7, D8];
 
 
 //随机点餐方法                              
@@ -156,23 +166,114 @@ function randomOrder(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 //顾客队列
-var customerArr = ['C1', 'C2', 'C3', 'C4', 'C5'];
+var customerArr = ['C1', 'C2', 'C3'];
 
 
-var P1=new Promise(function(resolve,reject){
-    var customer=new Customer();
-    customer.goseat();
+//员工：001服务员 002厨师 +顾客
+var Waiter = new ProxySingleWaiter(001, 'melody', 1000);
+var Chef = new ProxySingleChef(002, 'dam', 1000);
+var customer = new Customer();
 
-    setTimeout(resolve,3000,customer.order(menu));
+
+//餐厅工作开始------------------------------------------------------------
+//                                                  ---------------------
+//                                                           ------------
+//Promise对象
+function Work(){
+var Pro = Promise.resolve();
+
+
+Pro=Pro.then(() => {
+    return new Promise(function (resolve, reject) {
+
+        customer.goseat();
+
+        setTimeout(resolve, 3000);
+
+    })
+}).then(() => {
+    var d = customer.order(menu);
+    Waiter.serveOrder(d);
+    Waiter.tellChef(d);
+    return d;
+}).then((post) => {
+
+
+    /**-----------------------------------做菜区------------ */
+    var deskDishes = [];
+    Chef.cook(post);
+    //提取需要做的菜 （菜名+时间)
+    var dishObjArr = [];
+
+    for (let i = 0; i < post.length; i++) {
+        for (let j = 0; j < menu.length; j++) {
+            if (post[i] == menu[j].name) {
+                var obj = {};
+                obj.name = post[i];
+                obj.time = menu[j].time;
+                dishObjArr.push(obj);
+
+            }
+        }
+    }
+    //师傅做菜+传菜
+    var promise = Promise.resolve();
+    var promise2 = Promise.resolve();
+    for (let i = 0; i < dishObjArr.length; i++) {
+        promise = promise.then(() => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(dishObjArr[i].name);
+                }, dishObjArr[i].time * 1000);
+            })
+        }).then((value) => {
+            Chef.passDish(value);
+            Waiter.passDish(value);
+            deskDishes.push(value);//将菜加到桌子上
+
+            var dish = deskDishes[0];
+            promise2 = promise2.then(() => {
+
+
+                return new Promise((resolve, reject) => {
+
+                    setTimeout(() => {
+                        resolve(dish)
+                    }, 3000);
+                }).then((value) => {
+
+                    customer.enjoyDeal(value);
+
+                })
+
+            })
+            deskDishes.pop();
+            if (i == dishObjArr.length - 1) {
+                promise2.then(() => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 3000);
+                    })
+                }).then(() => {
+                    customer.pay()
+                    return new Promise((resolve,reject)=>{
+                        setTimeout(() => {
+                            resolve();
+                        }, 3000);
+                    })
+                }).then(()=>{
+                    Work();
+                })
+            }
+
+        })
+    }
+    /**------------------------做菜区------------------------ */
+
 
 })
 
-P1.then((value)=>{
-    var Waiter=new ProxySingleWaiter(001,'melody',1000);
-    Waiter.serveOrder(value);
-    Waiter.tellChef(value);
-})
 
-
-
-
+}
+Work();
