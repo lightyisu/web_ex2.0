@@ -2,8 +2,53 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <style>
+            .chef{
+                position: absolute;
+            }
+            #waiter{
+                position: absolute;
+                left: 620px;
+            }
+            .cus{
+                position: absolute;
+                left: 700px;
+            }
+            #money{
+                padding-top: 400px;
+            }
+            li{
+                background-color: #00A4FF;
+                display: inline-block;
+               margin: 10px;
+               color: white;
+               padding: 10px;
+            }
+        
+        </style>
     </head>
     <body>
-        <script src="ObjectForJS.js"></script>
+        <div class="chef">
+        
+        <img src="img/chef.jpg" width="10%" >
+        <p id="state">厨师状态：<span id="chefStatus">空闲</span></p>
+        <p>剩余时间完成:<span id="timeleft"></span></p>
+        <p id="menuleft">待做列表：<span id="taskList">
+
+        </span></p>
+        </div>
+        <div id="waiter">
+        <img src="img/waiter.jpg" width="10%">
+        
+        </div>
+        <div class="cus">
+        <img src="img/cus.jfif" width="10%">
+        <p>点菜状态：<span id="cusStatus"></span>(剩余时间：<span id="timeleft1"></span>)</p>
+        <P>菜单列表：<span id="orderList">
+         
+        </span></P>
+        </div>
+        <p id="money">餐厅现金：0</p>
+    <script src="ObjectForJS.js"></script>
     </body>
 </html>
