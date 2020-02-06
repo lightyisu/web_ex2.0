@@ -190,8 +190,8 @@ var timeleft1 = document.getElementById('timeleft1');
 var taskList=document.getElementById('taskList');
 var ChefStatus=document.getElementById('chefStatus');
 var timeleft=document.getElementById('timeleft');
-
-
+var money=document.getElementById('money');
+var moneyOwn=0;
 
 
 
@@ -231,9 +231,11 @@ function Work() {
 
         /**-----------------------------------做菜区------------ */
         var deskDishes = [];
+       
         Chef.cook(post);
         //提取需要做的菜 （菜名+时间)
         var dishObjArr = [];
+    
 
         for (let i = 0; i < post.length; i++) {
             for (let j = 0; j < menu.length; j++) {
@@ -241,6 +243,7 @@ function Work() {
                     var obj = {};
                     obj.name = post[i];
                     obj.time = menu[j].time;
+                    obj.price=menu[j].price;
                     dishObjArr.push(obj);
 
                 }
@@ -250,7 +253,8 @@ function Work() {
         var promise = Promise.resolve();
         var promise2 = Promise.resolve();
         for (let i = 0; i < dishObjArr.length; i++) {
-            
+          moneyOwn=moneyOwn+dishObjArr[i].price;
+
             promise = promise.then(() => {
                 count(timeleft,dishObjArr[i].time);
 
@@ -310,9 +314,15 @@ function Work() {
 
                 })
                 deskDishes.pop();
+
+
                 if (i == dishObjArr.length - 1) {
                     promise2.then(() => {
+                        
                         return new Promise((resolve, reject) => {
+                            cusStatus.innerHTML='支付宝支付中';
+                            money
+                            count(timeleft1,3)
                             setTimeout(() => {
                                 resolve();
                             }, 3000);
@@ -321,6 +331,8 @@ function Work() {
                         customer.pay()
                         cusStatus.innerHTML='等待下一位客人';
                         count(timeleft1,3);
+                        money.innerHTML='餐厅现金:'+moneyOwn;
+                        
                         return new Promise((resolve, reject) => {
                             setTimeout(() => {
                                 resolve();
