@@ -9,11 +9,15 @@
     <p id="count"></p>
 </body>
 <script>
-  function getPrice(){
-      
-  }
-
+ var count=document.getElementById('count');
+ function get(){
+     
+     count.innerHTML=document.body.clientWidth;
+     console.log(document.body.clientWidth)
+ }
+ setInterval(get,100);
 </script>
+
 </body>
 
 </html>

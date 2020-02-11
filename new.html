@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+    </head>
     <body>
         <script>
-        var tet='che';
-        if(tet)
-        alert('aaa');
-        else
-        alert('bbb');
+        var pubsub={};
+        //公共发布者
+
+        (function(q){
+            var list=[],subUid=-1;
+            //回调函数数组，基准UID
+
+            //发布消息
+            q.publish=function(type,content){
+                if(!list[type]){
+                    return false;
+
+                }
+                
+                setTimeout(() => {
+                    var subscribers=list[type];
+                    len=subscribers?subscribers.length:0;
+
+                    while(len--){
+                        subscribers[len].func(type,content);
+                    }
+                }, 0);
+                return true;
+
+            }
+
+            q.subscribe=function(type,func){
+                if(!list[type]){
+                    list[type]=[]
+                }
+                var token=(++subUid).toString();
+                list[type].push({
+                    token:token,
+                    func:func
+                });
+
+                return token;
+            };
+
+            q.unsubscribe=function(token){
+                for( var m in list){
+                    if(list[m]){
+                        for(let i=0,j=list[m].length;i<j;i++){
+                            if (list[m][i].token === token) {
+                            list[m].splice(i, 1);
+                            return token;
+                        }
+                        }
+                    }
+                }
+            }
+
+
+        })(pubsub);
         </script>
     </body>
 </html>
