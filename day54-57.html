@@ -5,36 +5,86 @@
     <meta charset="utf-8">
 </head>
 <style>
- 
+    div {
+        border: 1px solid black;
+    }
 </style>
 
 <body>
-  
+
+    <div style="width: 1200px;height: 400px;"></div>
+
     <script>
-     
-        
+        var d1 = document.querySelectorAll('div')[0];
+        var d2 = document.querySelectorAll('div')[1];
         //TEST
-        let Factory=function(){
+        function random(min,max){
+            return Math.floor(Math.random()*(max-min))+min;
+
+        }
+        let Factory = function (role) {
             //在容器中载入操场
-            function ground(coutainer){
-                this.width=width;
-                this.height=height;
-                var ground=document.createElement('canvas');
-                ground.setAttribute('id','ground');
-                ground.setAttribute('width',x+width);
-                ground.setAttribute('height',y+height);
-                var body=document.getElementsByTagName('body')[0];
-                body.append(ground);
-                if(ground.getContext){
-                    var ctx=ground.getContext('2d');
-                    ctx.fillStyle='green';
-                    ctx.fillRect(x,y,width,height);
+            function ground(width, height) {
+                this.width = width;
+                this.height = height;
+            }
+            function player() {
+                this.speed=random(1,99);
+                this.maxSpeed=3+(this.speed-1)*(9/98);
+
+            }
+            player.prototype.build = function (container) {
+                //容器必须是canvas
+                var ctx = container.getContext('2d');
+                var cWidth = parseInt(container.width);
+
+                var playerLength = (2 / 1000) * cWidth *5;
+
+                ctx.translate(50,50);
+                ctx.beginPath();
+                ctx.fillStyle = 'white';
+                ctx.arc(playerLength, playerLength, playerLength, 0, 2 * Math.PI);
+                ctx.fill()
+               
+            }
+           
+            ground.prototype.build = function (container) {
+                var ground = document.createElement('canvas');
+                var cWidth = parseInt(container.style.width);
+                var cHeight = parseInt(container.style.height);
+                var rWighth = (this.width / 1000) * cWidth;
+                var rHeight = (this.height / 1000) * cHeight;
+
+                ground.setAttribute('id', 'ground');
+                ground.setAttribute('width', rWighth);
+                ground.setAttribute('height', rHeight);
+                container.append(ground);
+                if (ground.getContext) {
+                    var ctx = ground.getContext('2d');
+                    ctx.fillStyle = 'green';
+                    ctx.fillRect(0, 0, rWighth, rHeight);
                 }
+                return ground;
 
             }
 
+            switch (role) {
+                case 'ground':
+                    return new ground(1000, 800);
+                    break;
+                case 'ground2':
+                    return new ground(600, 200);
+                    break;
+                case 'player':
+                    return new player();
+                    break;
+            }
         }
-
+        let g1 = Factory('ground');
+        let ground = g1.build(d1);
+        
+        let p1 = Factory('player');
+        p1.build(ground);
 
     </script>
 </body>
